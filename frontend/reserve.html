@@ -1,0 +1,502 @@
+<!--frontend/reserve.html-->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KITSUNE OMAKASE</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  
+<body>
+   <!-- ───────── HEADER ───────── -->
+  <header>
+    <div class="header-left">
+      <img src="/frontend/picture/header.png" alt="header logo">
+    </div>
+    
+    <div class="header-right">
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
+  <!-- เมนูที่ซ่อนอยู่ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-box">
+      <span class="close-menu" onclick="toggleMenu()">✕</span>
+      <ul>
+        <li><a href="profile.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="reserve.html">จองคอร์สอาหาร</a></li>
+        <li><a href="../frontend/History/history.html">ประวัติการจอง</a></li>
+        <li><a href="main.html" class="logout">ออกจากระบบ</a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  
+
+  <!-- ───────── COURSES (ดึงจากฐานข้อมูล) ───────── -->
+  <div id="courses-container">
+    <h3 class="course">จองคอร์สอาหาร</h3>
+  </div>
+
+  <!-- <div id="courses"></div> -->
+
+
+  <!-- 499+ -->
+  <!-- <div class="course">
+    
+    <h2>Omakase 499+ (7 Courses)</h2>
+    <p class="intro">“เหมาะสำหรับคนเริ่มลองโอมากาเสะ”</p>
+    <img src="/frontend/picture/499+.png" alt="Omakase 499">
+    <p><strong>เวลา:</strong> 11:00 - 12:00 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    <ul>
+      <li>Amuse Bouche - Date x Nori topped with Angkimo</li>
+      <li>Sushi 1: Salmon – Fresh Salmon topped with Yuzu Kosho</li>
+      <li>Sushi 2: Hiramasa – Wasabi & Ikura</li>
+      <li>Sushi 3: Shime Saba – Sweet Shrimp with Bonito Sauce</li>
+      <li>Chef Dish - Fish Sauce with Wakame</li>
+      <li>Dessert - Vanilla Ice Cream</li>
+    </ul>
+    <a class="reserve-btn" href="499+.html" >จองเลย</a>
+  </div> -->
+
+  <!-- 699+ -->
+  <!-- <div class="course">
+    <h2>Omakase 699+ (9 Courses)</h2>
+      <p class="intro">“เพิ่มวัตถุดิบและความหลากหลาย”</p>
+    <img src="/frontend/picture/699+.png" alt="Omakase 699">
+    <p><strong>เวลา:</strong> 13:30 - 14:30 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    
+    <ul>
+      <li>Amuse Bouche – Tempura Tofu with Crispy Kani</li>
+      <li>Hirame – Fresh Squid with Yuzu Sauce</li>
+      <li>Hotate – Scallop with Miso Sauce</li>
+      <li>Sushi 1: Engawa – Topped with Spicy Sauce</li>
+      <li>Sushi 2: Salmon – Served with Yuzu Kosho</li>
+      <li>Sushi 3: Shime Saba – Sweet Shrimp with Bonito Sauce</li>
+      <li>Clear Broth – Kombu Dashi with Seaweed</li>
+      <li>Dessert – Yuzu Sorbet</li>
+    </ul>
+    <a class="reserve-btn" href="699+.html"  >จองเลย</a>
+  </div> -->
+
+  <!-- 899+ -->
+  <!-- <div class="course">
+    <h2>Omakase 899+ (11 Courses)</h2>
+      <p class="intro">“วัตถุดิบพรีเมียมขึ้น มี Uni และ Chu-Toro”</p>
+    <img src="/frontend/picture/899+.png" alt="Omakase 899">
+    <p><strong>เวลา:</strong> 15:30 - 17:30 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    <ul>
+      <li>Amuse Bouche – Grilled Baby Corn with Uni</li>
+      <li>Akami Naka – Marinated Tuna with Ponzu</li>
+      <li>Engawa – Spicy Sauce & Citrus Zest</li>
+      <li>Hiramasa – Fresh Squid with Miso</li>
+      <li>Sushi 1: Otoro – Lightly Torched Salmon Belly</li>
+      <li>Sushi 2: Botan Ebi – Sweet Shrimp with Roe</li>
+      <li>Sushi 3: Aji – Japanese Horse Mackerel</li>
+      <li>Sushi 4: Anago – Sea Eel with Teriyaki Sauce</li>
+      <li>Chef Dish – Fish Sauce with Wakame</li>
+      <li>Dessert – Matcha Roll Cake with Red Bean Cream</li>
+    </ul>
+    <a class="reserve-btn" href="899+.html" >จองเลย</a>
+  </div> -->
+
+  <!-- 1099+ -->
+  <!-- <div class="course">
+    <h2>Omakase 1099+ (13 Courses)</h2>
+      <p class="intro">“ระดับพรีเมียม มีทั้ง Uni, Chu-Toro, Wagyu”</p>
+    <img src="/frontend/picture/1099+.png" alt="Omakase 1099">
+    <p><strong>เวลา:</strong> 18:30 - 21:00 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    <ul>
+      <li>Amuse Bouche – Wagyu Tataki with Garlic Miso</li>
+      <li>Akami Zuke – Marinated Tuna with Yuzu</li>
+      <li>Nama Uni Bowl – Sea Urchin with Ikura</li>
+      <li>Sushi 1: Watarigani Roll with Crab & Caviar Jelly</li>
+      <li>Sushi 2: Chu-Toro – Medium Fatty Tuna</li>
+      <li>Sushi 3: Otoro – Fatty Tuna Belly with Truffle Sauce</li>
+      <li>Sushi 4: Hotate – Scallop with Yuzu Salt</li>
+      <li>Sushi 5: Ikura Don – Salmon Roe & Shiso Leaf</li>
+      <li>Sushi 6: Aji – Sweet Shrimp with Bonito Sauce</li>
+      <li>Clear Broth – Fish Sauce Miso & Wakame</li>
+      <li>Dessert – Maple Crème Brûlée & Yuzu Sorbet</li>
+    </ul>
+    <a class="reserve-btn" href="1099+.html" >จองเลย</a>
+  </div> -->
+
+
+  <!-- MODAL ดูรูปทั้งหมด -->
+<div id="imgModal" class="modal" style="display:none;">
+  <div class="modal-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,.6)"></div>
+  <div class="modal-body" style="
+      position:fixed;
+      left:50%;
+      top:55%;
+      transform:translate(-50%,-50%);
+      max-width:90vw;
+      max-height:90vh;
+      background:#fff;
+      border-radius:12px;
+      padding:16px;
+      overflow:auto;
+      text-align:center;">
+    <button id="closeModal" style="
+      float:right;
+      border:none;
+      background:#eee;
+      border-radius:8px;
+      padding:6px 10px;
+      cursor:pointer;">ปิด</button>
+    <h3 style="text-align:center;margin-bottom:12px;">รูปภาพทั้งหมดของคอร์สนี้</h3>
+    <div id="modalGallery" style="
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+      gap:16px;
+      justify-items:center;">
+      <!-- รูปแต่ละเมนูจะถูกใส่ตรงนี้ -->
+    </div>
+  </div>
+</div>
+
+
+
+
+      <div class="footer-top">
+            <div class="footer-left">
+                <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+                <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+                <p>เวลาเปิดทำการ</p>
+                <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+            </div>
+
+            <div class="footer-right">
+                <p>เบอร์โทรศัพท์</p>
+                <p>(+66) 94-970-9780</p>
+                <div class="social-icons">
+                    <img src="./img/line.png" alt="Line">
+                    <img src="./img/Facebook.png" alt="Facebook">
+                    <img src="./img/instagram.png" alt="Instagram">
+                </div>
+                <p>เวลาเปิดทำการ</p>
+                <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <img src="./picture/namelogo.png" alt="Kitsune Omakase Logo">
+        </div>
+    </footer>
+  <div id="imgModal" class="modal" style="display:none;">
+  <div class="modal-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,.6)"></div>
+  <button id="closeModal" style="position:fixed;top:60px;right:40px;border:none;background:#fff;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;">✕</button>
+  <div id="modalGallery" style="display:flex;flex-direction:column;align-items:center;padding-top:100px;"></div>
+</div>
+
+
+
+<!-- ───────── SCRIPT ───────── -->
+  <!-- <script>
+
+    const API_BASE = "http://127.0.0.1:8080/api";
+
+    // โหลดคอร์สทั้งหมดจาก backend
+    async function loadSelectedCourse() {
+      const price = localStorage.getItem("selectedCoursePrice");
+      if (!price) {
+        document.getElementById("courses-container").innerHTML =
+          "<p style='text-align:center;color:red;'>❌ ไม่พบข้อมูลคอร์ส</p>";
+        return;
+      }
+
+      
+      try {
+        const res = await fetch(`${API_BASE}/public/courses`);
+        const courses = await res.json();
+        if (!Array.isArray(courses)) throw new Error("Invalid response");
+
+        container.innerHTML = `
+          <h3 style="text-align:center;">จองคอร์สอาหาร</h3>
+          ${courses.map(renderCourse).join("")}
+        `;
+        attachViewImageButtons();
+      } catch (err) {
+        container.innerHTML = `<p style="color:red;text-align:center;">โหลดข้อมูลไม่สำเร็จ</p>`;
+        console.error(err);
+      }
+    }
+
+    // สร้าง HTML แต่ละคอร์ส
+    function renderCourse(c) {
+      return `
+      <div class="course">
+        <h2>${c.title}</h2>
+        <p class="intro">“${c.description || ""}”</p>
+        <img src="/frontend/picture/${c.price}+.png" alt="${c.title}">
+        <p><strong>เวลา:</strong> ${c.timeWindow}</p>
+        <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+        <ul>
+          ${c.items
+            .map(
+              (it) => `
+              <li>
+                ${escapeHtml(it.name)}${it.subtitle ? " – " + escapeHtml(it.subtitle) : ""}
+                ${it.imageUrl ? `<button class="view-img" data-url="${it.imageUrl}" style="margin-left:6px;">ดูรูป</button>` : ""}
+              </li>`
+            )
+            .join("")}
+        </ul>
+        <a class="reserve-btn" href="#" onclick="reserveCourse('${c.slug}')">จองเลย</a>
+      </div>
+      `;
+      function goToReserve(price) {
+        localStorage.setItem("selectedCoursePrice", price);
+        window.location.href = "reserve.html";
+      }
+
+    }
+
+    // Escape HTML ป้องกัน tag แปลกๆ
+    function escapeHtml(s) {
+      return (s || "").replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[m]));
+    }
+
+    // ปุ่ม “ดูรูป” แสดงรูปอาหาร
+    function attachViewImageButtons() {
+      document.querySelectorAll(".view-img").forEach((btn) => {
+        btn.addEventListener("click", () => openModal(btn.dataset.url));
+      });
+    }
+
+    // Modal แสดงภาพ
+    function openModal(url) {
+      const modal = document.createElement("div");
+      modal.className = "modal";
+      modal.innerHTML = `
+        <div style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center;">
+          <div style="background:#fff;border-radius:12px;padding:12px;max-width:90vw;max-height:85vh;">
+            <button onclick="this.closest('.modal').remove()" style="float:right;border:none;background:#eee;border-radius:8px;padding:6px 10px;">ปิด</button>
+            <img src="${url}" alt="อาหาร" style="display:block;max-width:85vw;max-height:75vh;object-fit:contain;margin-top:8px;">
+          </div>
+        </div>`;
+      document.body.appendChild(modal);
+    }
+
+    
+    // ปรับเมนูตามสถานะล็อกอิน
+  (function setMenu(){
+    const uid = localStorage.getItem("userId");
+    const list = document.querySelector(".menu-box ul");
+    if(!list) return;
+    if(uid){
+      list.innerHTML = `
+        <li><a href="profile.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="reserve.html">จองคอร์สอาหาร</a></li>
+        <li><a href="list.html">ประวัติการจอง</a></li>
+        <li><a href="main.html">ออกจากระบบ</a></li>
+      `;
+    }else{
+      list.innerHTML = `
+        <li><a href="login.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="login.html">จองคอร์สอาหาร</a></li>
+        <li><a href="login.html">ประวัติการจอง</a></li>
+        
+      `;
+    }
+  })();
+
+  // ปิดระบบจองจริง (กดแล้วเตือนเฉยๆ)
+  // document.querySelectorAll(".reserve-btn").forEach(a=>{
+  //   a.addEventListener("click", (ev)=>{
+  //     ev.preventDefault();
+  //     alert("ระบบจองกำลังพัฒนา");
+  //   });
+  // });
+
+    function toggleMenu() {
+      const menu = document.getElementById('menuOverlay');
+      menu.classList.toggle('active');
+    }
+  </script> -->
+
+
+
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById('menuOverlay');
+    menu.classList.toggle('active');
+  }
+
+  const API_BASE = 'http://localhost:8080/api';
+
+  async function loadCourses() {
+    const container = document.getElementById('courses-container');
+    container.innerHTML = '<p style="text-align:center;">กำลังโหลดคอร์ส...</p>';
+
+    try {
+      // ดึงราคาคอร์สทั้งหมด (name)
+      const res = await fetch(`${API_BASE}/admin/food/0`);
+      const { dataPrice } = await res.json();
+      container.innerHTML = `
+      <h3 style="text-align:center; margin-bottom: 20px;">จองคอร์สอาหาร</h3>`;
+
+      // ดึงอาหารในแต่ละคอร์ส
+      for (const course of dataPrice) {
+        const price = course.name;
+        const resFood = await fetch(`${API_BASE}/admin/food/${price}`);
+        const { dataFood } = await resFood.json();
+        const listFoods = dataFood[0]?.list_foods || [];
+        container.innerHTML += renderCourse(price, listFoods);
+      }
+
+      attachImageButtons();
+    } catch (err) {
+      console.error("❌ โหลดข้อมูลไม่สำเร็จ:", err);
+      container.innerHTML = '<p style="color:red;text-align:center;">โหลดข้อมูลไม่สำเร็จ</p>';
+    }
+  }
+
+  // ✅ สร้างกล่องคอร์ส (เหมือน main.html)
+  function renderCourse(price, foods) {
+    const courseImages = {
+      499: "/frontend/picture/499+.png",
+      699: "/frontend/picture/699+.png",
+      899: "/frontend/picture/899+.png",
+      1099: "/frontend/picture/1099+.png"
+    };
+
+    const courseDesc = {
+      499: "เหมาะสำหรับคนเริ่มลองโอมากาเสะ",
+      699: "เพิ่มวัตถุดิบและความหลากหลาย",
+      899: "วัตถุดิบพรีเมียมขึ้น มี Uni และ Chu-Toro",
+      1099: "ระดับพรีเมียม มีทั้ง Uni, Chu-Toro, Wagyu"
+    };
+
+    const courseTime = {
+      499: "11:00 - 12:00 น.",
+      699: "13:30 - 14:30 น.",
+      899: "15:30 - 17:30 น.",
+      1099: "18:30 - 21:00 น."
+    };
+
+    return `
+      <div class="course">
+        <h2>Omakase ${price}+ (${foods.length} Courses)</h2>
+        <p class="intro">“${courseDesc[price] || ''}”</p>
+        <img src="${courseImages[price] || '/frontend/picture/logo.png'}" alt="Omakase ${price}">
+        <p><strong>เวลา:</strong> ${courseTime[price] || '-'}</p>
+        <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+
+        <!-- ปุ่มดูรูป -->
+        <div style="margin: 12px 0;">
+          <button class="view-all" data-foods='${JSON.stringify(foods)}'>กดเพื่อดูรูปอาหาร</button>
+        </div>
+
+        <ul>
+          ${foods.map(f => `<li>${escapeHtml(f.food_name)}</li>`).join('')}
+        </ul>
+
+        <a class="reserve-btn" href="#" onclick="reserveCourse(${price})">จองเลย</a>
+      </div>
+    `;
+  }
+
+  
+  // ✅ กดดูรูปทั้งหมด
+  function attachImageButtons() {
+    document.querySelectorAll('.view-all').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const foods = JSON.parse(btn.dataset.foods);
+        openImageGallery(foods);
+      });
+    });
+
+    document.getElementById('closeModal').onclick = closeImageGallery;
+    document.querySelector('#imgModal .modal-backdrop').onclick = closeImageGallery;
+  }
+
+  function openImageGallery(foods) {
+  const modal = document.getElementById('imgModal');
+  const modalImgContainer = document.getElementById('modalGallery');
+  modalImgContainer.innerHTML = '';
+
+  foods.forEach(f => {
+    console.log("🖼️ item:", f.food_name, f.food_img); // ✅ debug ตรงนี้
+    if (f.food_img && f.food_img.base64) {
+      const mime = f.food_img.mimeType || 'image/jpeg';
+      const imgUrl = `data:${mime};base64,${f.food_img.base64}`;
+      modalImgContainer.innerHTML += `
+        <div class="food-card">
+          <img src="${imgUrl}" alt="${escapeHtml(f.food_name)}">
+          <p>${escapeHtml(f.food_name)}</p>
+        </div>
+      `;
+    }
+  });
+
+  modal.style.display = 'block';
+}
+
+  function closeImageGallery() {
+    const modal = document.getElementById('imgModal');
+    modal.style.display = 'none';
+    document.getElementById('modalGallery').innerHTML = '';
+  }
+
+  function escapeHtml(s) {
+    return (s || '').replace(/[&<>"']/g, m => (
+      {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]
+    ));
+  }
+
+  // ✅ ฟังก์ชันจอง
+  function reserveCourse(price) {
+    localStorage.setItem("selectedCoursePrice", price);
+    window.location.href = `booking.html#reserve-section`;
+  }
+
+
+// ✅ ฟังก์ชันจอง
+function reserveCourse(price) {
+    localStorage.setItem("selectedCoursePrice", price);
+
+    let bookingPage = '';
+    switch(price){
+        case 499:
+            bookingPage = './Booking/booking499.html';
+            break;
+        case 699:
+            bookingPage = './Booking/booking699.html';
+            break;
+        case 899:
+            bookingPage = './Booking/booking899.html';
+            break;
+        case 1099:
+            bookingPage = './Booking/booking1099.html';
+            break;
+        default:
+            bookingPage = './Booking/booking499.html';
+    }
+
+    window.location.href = `${bookingPage}#reserve-section`;
+}
+const logoutBtn = document.querySelector(".logout");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../loginEmployee.html";
+  });
+}
+
+  loadCourses();
+</script>
+
+
+</body>
+</html>
+
+
+

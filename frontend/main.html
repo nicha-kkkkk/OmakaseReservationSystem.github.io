@@ -1,0 +1,380 @@
+<!--frontend/main.html-->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KITSUNE OMAKASE</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<body>
+   <!-- ───────── HEADER ───────── -->
+  <header>
+    <div class="header-left">
+      <img src="/frontend/picture/header.png" alt="header logo">
+    </div>
+    
+    <div class="header-right">
+      <a href="register.html" class="btn-header btn-register">สมัครสมาชิก</a>
+      <a href="login.html" class="btn-header btn-login">เข้าสู่ระบบ</a>
+       <a href="./loginEmployee.html" class="btn-header btn-login">สำหรับพนักงาน</a>
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
+
+  <!-- เมนูที่ซ่อนอยู่ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-box">
+      <span class="close-menu" onclick="toggleMenu()">✕</span>
+      <ul>
+        <li><a href="login.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="login.html">จองคอร์สอาหาร</a></li>
+        <li><a href="login.html">ประวัติการจอง</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ───────── LOGO ───────── -->
+  <div class="logo">
+    <img src="/frontend/picture/logo.png" alt="Kitsune Logo">
+  </div>
+
+  <div class="foodintro">
+    <img src="/frontend/picture/foodintro.png" alt="foodintro">
+  </div>
+
+  <p class="intro">
+    “พิเศษเฉพาะ KITSUNE - รับประทานอาหารญี่ปุ่นสุดพรีเมียม<br>
+    สร้างสรรค์โดยเชฟมืออาชีพ ด้วยวัตถุดิบคุณภาพสูง”
+  </p>
+
+  <!-- ===== Dynamic Courses from API ===== -->
+  <!-- 499+ -->
+  <!-- <div class="course">
+    <h2>Omakase 499+ (7 Courses)</h2>
+    <p class="intro">“เหมาะสำหรับคนเริ่มลองโอมากาเสะ”</p>
+    <img src="/frontend/picture/499+.png" alt="Omakase 499">
+    <p><strong>เวลา:</strong> 11:00 - 12:00 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    <ul>
+      <li>Amuse Bouche - Date x Nori topped with Angkimo</li>
+      <li>Sushi 1: Salmon – Fresh Salmon topped with Yuzu Kosho</li>
+      <li>Sushi 2: Hiramasa – Wasabi & Ikura</li>
+      <li>Sushi 3: Shime Saba – Sweet Shrimp with Bonito Sauce</li>
+      <li>Chef Dish - Fish Sauce with Wakame</li>
+      <li>Dessert - Vanilla Ice Cream</li>
+    </ul>
+    <a class="reserve-btn" href="login.html" >จองเลย</a>
+  </div> -->
+
+  <!-- 699+ -->
+  <!-- <div class="course">
+    <h2>Omakase 699+ (9 Courses)</h2>
+      <p class="intro">“เพิ่มวัตถุดิบและความหลากหลาย”</p>
+    <img src="/frontend/picture/699+.png" alt="Omakase 699">
+    <p><strong>เวลา:</strong> 13:30 - 14:30 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    
+    <ul>
+      <li>Amuse Bouche – Tempura Tofu with Crispy Kani</li>
+      <li>Hirame – Fresh Squid with Yuzu Sauce</li>
+      <li>Hotate – Scallop with Miso Sauce</li>
+      <li>Sushi 1: Engawa – Topped with Spicy Sauce</li>
+      <li>Sushi 2: Salmon – Served with Yuzu Kosho</li>
+      <li>Sushi 3: Shime Saba – Sweet Shrimp with Bonito Sauce</li>
+      <li>Clear Broth – Kombu Dashi with Seaweed</li>
+      <li>Dessert – Yuzu Sorbet</li>
+    </ul>
+    <a class="reserve-btn" href="login.html"  >จองเลย</a>
+  </div> -->
+
+  <!-- 899+ -->
+  <!-- <div class="course">
+    <h2>Omakase 899+ (11 Courses)</h2>
+      <p class="intro">“วัตถุดิบพรีเมียมขึ้น มี Uni และ Chu-Toro”</p>
+    <img src="/frontend/picture/899+.png" alt="Omakase 899">
+    <p><strong>เวลา:</strong> 15:30 - 17:30 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    <ul>
+      <li>Amuse Bouche – Grilled Baby Corn with Uni</li>
+      <li>Akami Naka – Marinated Tuna with Ponzu</li>
+      <li>Engawa – Spicy Sauce & Citrus Zest</li>
+      <li>Hiramasa – Fresh Squid with Miso</li>
+      <li>Sushi 1: Otoro – Lightly Torched Salmon Belly</li>
+      <li>Sushi 2: Botan Ebi – Sweet Shrimp with Roe</li>
+      <li>Sushi 3: Aji – Japanese Horse Mackerel</li>
+      <li>Sushi 4: Anago – Sea Eel with Teriyaki Sauce</li>
+      <li>Chef Dish – Fish Sauce with Wakame</li>
+      <li>Dessert – Matcha Roll Cake with Red Bean Cream</li>
+    </ul>
+    <a class="reserve-btn" href="login.html" >จองเลย</a>
+  </div> -->
+
+  <!-- 1099+ -->
+  <!-- <div class="course">
+    <h2>Omakase 1099+ (13 Courses)</h2>
+      <p class="intro">“ระดับพรีเมียม มีทั้ง Uni, Chu-Toro, Wagyu”</p>
+    <img src="/frontend/picture/1099+.png" alt="Omakase 1099">
+    <p><strong>เวลา:</strong> 18:30 - 21:00 น.</p>
+    <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+    <ul>
+      <li>Amuse Bouche – Wagyu Tataki with Garlic Miso</li>
+      <li>Akami Zuke – Marinated Tuna with Yuzu</li>
+      <li>Nama Uni Bowl – Sea Urchin with Ikura</li>
+      <li>Sushi 1: Watarigani Roll with Crab & Caviar Jelly</li>
+      <li>Sushi 2: Chu-Toro – Medium Fatty Tuna</li>
+      <li>Sushi 3: Otoro – Fatty Tuna Belly with Truffle Sauce</li>
+      <li>Sushi 4: Hotate – Scallop with Yuzu Salt</li>
+      <li>Sushi 5: Ikura Don – Salmon Roe & Shiso Leaf</li>
+      <li>Sushi 6: Aji – Sweet Shrimp with Bonito Sauce</li>
+      <li>Clear Broth – Fish Sauce Miso & Wakame</li>
+      <li>Dessert – Maple Crème Brûlée & Yuzu Sorbet</li>
+    </ul>
+    <a class="reserve-btn" href="login.html" >จองเลย</a>
+  </div> -->
+
+
+
+   <div id="courses"></div>
+
+  <!-- MODAL ดูรูปทั้งหมด -->
+<div id="imgModal" class="modal" style="display:none;">
+  <div class="modal-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,.6)"></div>
+  <div class="modal-body" style="
+      position:fixed;
+      left:50%;
+      top:55%;
+      transform:translate(-50%,-50%);
+      max-width:90vw;
+      max-height:90vh;
+      background:#fff;
+      border-radius:12px;
+      padding:16px;
+      overflow:auto;
+      text-align:center;">
+    <button id="closeModal" style="
+      float:right;
+      border:none;
+      background:#eee;
+      border-radius:8px;
+      padding:6px 10px;
+      cursor:pointer;">ปิด</button>
+    <h3 style="text-align:center;margin-bottom:12px;">รูปภาพทั้งหมดของคอร์สนี้</h3>
+    <div id="modalGallery" style="
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+      gap:16px;
+      justify-items:center;">
+      <!-- รูปแต่ละเมนูจะถูกใส่ตรงนี้ -->
+    </div>
+  </div>
+</div>
+
+<!-- ───────── CHEF INTRO SECTION ───────── -->
+<section class="chef-section">
+  <h2 class="chef-heading">เชฟของเรา</h2>
+
+  <p class="chef-intro">
+    ทุกเมนูของ <strong>Kitsune Omakase</strong> ถูกรังสรรค์โดยเชฟผู้มีประสบการณ์ระดับมิชลิน  
+    ถ่ายทอดความประณีตและความตั้งใจ เพื่อให้ทุกคำที่ลิ้มลองเป็นมากกว่า “อาหาร” แต่คือ “ประสบการณ์”
+  </p>
+
+  <div class="chef-container">
+    <!-- Chef 1 -->
+    <div class="chef-card">
+      <div class="chef-photo">
+        <img src="picture/chef1.jpg" alt="Chef A">
+      </div>
+      <div class="chef-info">
+        <h3>เชฟอากิระ มัตสึโมโตะ</h3>
+        <p class="chef-title">เชฟมิชลิน 2 ดาว • Tokyo Cuisine Master</p>
+        <p class="chef-description">
+          ด้วยความหลงใหลในศิลปะแห่งรสชาติ เชฟอากิระถ่ายทอดความพิถีพิถันของวัตถุดิบญี่ปุ่นแท้  
+          ผ่านทุกจานที่เสิร์ฟ เพื่อให้คุณได้สัมผัสกลิ่นอายของโตเกียวในทุกคำ
+        </p>
+        <p class="chef-quote">“อาหารที่ดีเริ่มจากใจที่ใส่ใจในทุกรายละเอียด”</p>
+      </div>
+    </div>
+
+    <!-- Chef 2 -->
+    <div class="chef-card">
+      <div class="chef-photo">
+        <img src="picture/chef2.jpg" alt="Chef B">
+      </div>
+      <div class="chef-info">
+        <h3>เชฟซาร่า เลอคลัวร์</h3>
+        <p class="chef-title">Pastry Artist • French Michelin Experience</p>
+        <p class="chef-description">
+          เชฟซาร่ามอบประสบการณ์หวานละมุนในสไตล์ฝรั่งเศส  
+          ทุกขนมคือการผสมผสานระหว่างความงามและรสชาติ ที่จะทำให้คุณอยากลิ้มลองอีกครั้ง
+        </p>
+        <p class="chef-quote">“ขนมทุกชิ้นคือศิลปะที่กินได้”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+        <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+        <p>เวลาเปิดทำการ</p>
+        <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+      </div>
+
+      <div class="footer-right">
+        <p>เบอร์โทรศัพท์</p>
+        <p>(+66) 94-970-9780</p>
+        <div class="social-icons">
+          <img src="./img/line.png" alt="Line">
+          <img src="./img/Facebook.png" alt="Facebook">
+          <img src="./img/instagram.png" alt="Instagram">
+        </div>
+        <p>เวลาเปิดทำการ</p>
+        <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <img src="./picture/namelogo.png" alt="Kitsune Omakase Logo">
+    </div>
+  </footer>
+
+  <!-- ───────── SCRIPT ───────── -->
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById('menuOverlay');
+    menu.classList.toggle('active');
+  }
+
+  const API_BASE = 'http://localhost:8080/api';
+
+  async function loadCourses() {
+    const container = document.getElementById('courses');
+    container.innerHTML = '<p style="text-align:center;">กำลังโหลดคอร์ส...</p>';
+
+    try {
+      const res = await fetch(`${API_BASE}/admin/food/0`);
+      const { dataPrice } = await res.json();
+      container.innerHTML = '';
+
+      for (const course of dataPrice) {
+        const price = course.name;
+        const resFood = await fetch(`${API_BASE}/admin/food/${price}`);
+        const { dataFood } = await resFood.json();
+        const listFoods = dataFood[0]?.list_foods || [];
+
+        container.innerHTML += renderCourse(price, listFoods);
+      }
+
+      attachImageButtons();
+    } catch (err) {
+      console.error("❌ โหลดข้อมูลไม่สำเร็จ:", err);
+      container.innerHTML = '<p style="color:red;text-align:center;">โหลดข้อมูลไม่สำเร็จ</p>';
+    }
+  }
+
+  function renderCourse(price, foods) {
+  const courseImages = {
+    499: "/frontend/picture/499+.png",
+    699: "/frontend/picture/699+.png",
+    899: "/frontend/picture/899+.png",
+    1099: "/frontend/picture/1099+.png"
+  };
+
+  const courseDesc = {
+    499: "เหมาะสำหรับคนเริ่มลองโอมากาเสะ",
+    699: "เพิ่มวัตถุดิบและความหลากหลาย",
+    899: "วัตถุดิบพรีเมียมขึ้น มี Uni และ Chu-Toro",
+    1099: "ระดับพรีเมียม มีทั้ง Uni, Chu-Toro, Wagyu"
+  };
+
+  const courseTime = {
+    499: "11:00 - 12:00 น.",
+    699: "13:30 - 14:30 น.",
+    899: "15:30 - 17:30 น.",
+    1099: "18:30 - 21:00 น."
+  };
+
+  return `
+    <div class="course">
+      <h2>Omakase ${price}+ (${foods.length} Courses)</h2>
+      <p class="intro">“${courseDesc[price] || ''}”</p>
+      <img src="${courseImages[price] || '/frontend/picture/logo.png'}" alt="Omakase ${price}">
+      <p><strong>เวลา:</strong> ${courseTime[price] || '-'}</p>
+      <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
+
+      <!-- ✅ ย้ายปุ่มดูรูปมาอยู่ตรงนี้ -->
+      <div style="margin: 12px 0;">
+        <button class="view-all" data-foods='${JSON.stringify(foods)}'>กดเพื่อดูรูปอาหาร</button>
+      </div>
+
+      <ul>
+        ${foods.map(f => `<li>${escapeHtml(f.food_name)}</li>`).join('')}
+      </ul>
+
+      <a class="reserve-btn" href="login.html">จองเลย</a>
+    </div>
+  `;
+}
+
+
+  // ✅ ฟังก์ชันกดดูภาพรวมทั้งหมดใน modal
+  function attachImageButtons() {
+    document.querySelectorAll('.view-all').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const foods = JSON.parse(btn.dataset.foods);
+        openImageGallery(foods);
+      });
+    });
+
+    document.getElementById('closeModal').onclick = closeImageGallery;
+    document.querySelector('#imgModal .modal-backdrop').onclick = closeImageGallery;
+  }
+
+  // ✅ แสดงรูปทั้งหมดพร้อมชื่อเมนู
+  function openImageGallery(foods) {
+    const modal = document.getElementById('imgModal');
+    const modalImgContainer = document.getElementById('modalGallery');
+    modalImgContainer.innerHTML = '';
+
+    foods.forEach(f => {
+      if (f.food_img && f.food_img.base64) {
+        const imgUrl = `data:${f.food_img.mimeType};base64,${f.food_img.base64}`;
+        modalImgContainer.innerHTML += `
+          <div class="food-card">
+            <img src="${imgUrl}" alt="${escapeHtml(f.food_name)}">
+            <p>${escapeHtml(f.food_name)}</p>
+          </div>
+        `;
+      }
+    });
+
+    modal.style.display = 'block';
+  }
+
+  function closeImageGallery() {
+    const modal = document.getElementById('imgModal');
+    modal.style.display = 'none';
+    document.getElementById('modalGallery').innerHTML = '';
+  }
+
+  function escapeHtml(s) {
+    return (s || '').replace(/[&<>"']/g, m => (
+      {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]
+    ));
+  }
+
+  loadCourses();
+</script>
+</body>
+</html>
+
+
+

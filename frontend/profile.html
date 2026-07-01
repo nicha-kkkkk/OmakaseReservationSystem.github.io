@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ข้อมูลสมาชิก | KITSUNE OMAKASE</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <div class="header-left"><img src="/frontend/picture/header.png" alt="logo"></div>
+    <div class="header-right">
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
+
+   <!-- เมนูที่ซ่อนอยู่ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-box">
+      <span class="close-menu" onclick="toggleMenu()">✕</span>
+      <ul>
+        <li><a href="profile.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="reserve.html">จองคอร์สอาหาร</a></li>
+        <li><a href="../frontend/History/history.html">ประวัติการจอง</a></li>
+        <li><a href="./main.html">ออกจากระบบ</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="logo"><img src="/frontend/picture/logo.png" alt="Kitsune"></div>
+
+  <form id="profileForm" class="profile-box">
+    <h2>ข้อมูลสมาชิก <span class="edit-btn" id="editBtn">แก้ไขข้อมูล</span></h2>
+
+    <input type="text" name="name" placeholder="ชื่อ - นามสกุล" disabled required>
+    <input type="text" name="phone" placeholder="เบอร์โทรศัพท์" disabled required>
+    <input type="email" name="email" placeholder="อีเมล" disabled required>
+    <input type="password" name="password" placeholder="รหัสผ่าน" disabled>
+    <input type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" disabled>
+
+    <div class="profile-buttons">
+      <a href="reserve.html" class="back-btn">ย้อนกลับ</a>
+      <button type="submit">ยืนยัน</button>
+    </div>
+  </form>
+ <footer>
+        <div class="footer-top">
+            <div class="footer-left">
+                <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+                <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+                <p>เวลาเปิดทำการ</p>
+                <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+            </div>
+
+            <div class="footer-right">
+                <p>เบอร์โทรศัพท์</p>
+                <p>(+66) 94-970-9780</p>
+                <div class="social-icons">
+                    <img src="./img/instagram.png" alt="Line">
+                    <img src="./img/Facebook.png" alt="Facebook">
+                    <img src="./img/instagram.png" alt="Instagram">
+                </div>
+                <p>เวลาเปิดทำการ</p>
+                <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <img src="./picture/namelogo.png" alt="Kitsune Omakase Logo">
+        </div>
+    </footer>
+
+  <script>
+function toggleMenu() {
+  const menu = document.getElementById("menuOverlay");
+  if (menu) menu.classList.toggle("active");
+}
+
+const form = document.getElementById("profileForm");
+const editBtn = document.getElementById("editBtn");
+
+// โหลดข้อมูลโปรไฟล์จาก MongoDB
+async function loadProfile() {
+  const id = localStorage.getItem("userId");
+  if (!id) {
+    alert("กรุณาเข้าสู่ระบบก่อน");
+    location = "login.html";
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://127.0.0.1:8080/api/profile?id=${id}`);
+    const user = await res.json();
+
+    if (!res.ok) {
+      alert(user.error || "ไม่สามารถโหลดข้อมูลได้");
+      return;
+    }
+
+    // ✅ เติมข้อมูลเก่าลงในฟอร์ม
+    form.name.value = user.name || "";
+    form.phone.value = user.phone || "";
+    form.email.value = user.email || "";
+
+  } catch (err) {
+    console.error(err);
+    alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+  }
+}
+loadProfile();
+
+
+
+// ปุ่ม "แก้ไขข้อมูล" → toggle เปิด/ปิด
+editBtn.addEventListener("click", () => {
+  const fields = form.querySelectorAll("input");
+  fields.forEach((el) => (el.disabled = !el.disabled));
+});
+
+// ✅ ฟังก์ชันตรวจสอบความถูกต้อง
+function validateForm(name, phone, email, password, confirm) {
+  // ชื่อและนามสกุล
+  if (!name.includes(" ") || name.split(" ").length < 2) {
+    alert("กรุณากรอกชื่อและนามสกุลให้ครบถ้วน");
+    return false;
+  }
+
+  // เบอร์โทร
+  const phonePattern = /^0\d{9}$/;
+  if (!phonePattern.test(phone)) {
+    alert("กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง (10 หลัก และขึ้นต้นด้วย 0)");
+    return false;
+  }
+
+  // อีเมล
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    alert("กรุณากรอกอีเมลให้ถูกต้อง");
+    return false;
+  }
+
+  // ถ้ามีการกรอกรหัสผ่าน → ตรวจสอบรหัสด้วย
+  if (password || confirm) {
+    if (password.length < 8) {
+      alert("รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร");
+      return false;
+    }
+    if (password !== confirm) {
+      alert("ยืนยันรหัสผ่านไม่ตรงกัน");
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// ✅ ฟังก์ชันอัปเดตข้อมูล
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const id = localStorage.getItem("userId");
+
+  const name = form.name.value.trim();
+  const phone = form.phone.value.trim();
+  const email = form.email.value.trim();
+  const password = form.password.value;
+  const confirm = form.confirm.value;
+
+  if (!validateForm(name, phone, email, password, confirm)) return;
+
+  const payload = { name, phone, email };
+  if (password) payload.password = password;
+
+  try {
+    const res = await fetch(`http://127.0.0.1:8080/api/profile/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "อัปเดตไม่สำเร็จ");
+      return;
+    }
+
+    alert("อัปเดตข้อมูลเรียบร้อย ✅");
+    password.value = "";
+    confirm.value = "";
+
+    // 🔒 ล็อคฟิลด์กลับ
+    form.querySelectorAll("input").forEach((el) => (el.disabled = true));
+
+    // ไปหน้าจองคอร์สอาหาร
+    window.location = "reserve.html";
+  } catch (err) {
+    console.error("Update error:", err);
+    alert("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
+  }
+});
+</script>
+
+
+</body>
+</html>

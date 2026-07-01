@@ -1,0 +1,231 @@
+<!--frontend/employeeDashboard.html-->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="main.css">
+<title>Dashboard พนักงาน - Kitsune Omakase</title>
+<style>
+  body { font-family: "Prompt", Arial, sans-serif; margin:0; padding:0; background:#fff; }
+  header { background:#730606; color:white; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; }
+  header h1 { margin:0; font-size:20px; }
+  .logout { background:#fff; color:#730606; padding:6px 12px; border:none; border-radius:6px; cursor:pointer; }
+  main { padding:20px; }
+  .notification-card { border:1px solid #ccc; padding:12px; margin-bottom:12px; border-radius:8px; transition:0.3s; }
+  .notification-card.new { border-color:#730606; background:#fff0f0; }
+  .notification-card h3 { margin:0 0 6px 0; font-size:16px; }
+  .notification-card p { margin:4px 0; font-size:14px; }
+  .extra-info { display:none; margin-top:6px; font-size:14px; }
+  .view-details, .confirm-btn { display:inline-block; margin-top:6px; color:#730606; font-weight:bold; cursor:pointer; }
+  .confirm-btn { background:#730606; color:white; border:none; padding:6px 12px; border-radius:6px; margin-left:6px; }
+  .badge { background:red; color:white; padding:2px 6px; border-radius:50%; font-size:12px; margin-left:6px; }
+    /* ✅ เพิ่มเล็กน้อยเพื่อวางไอคอนแจ้งเตือนใน header */
+  .notification {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .notification .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="header-left">
+    <img src="/frontend/picture/header.png" alt="logo">
+  </div>
+  <div class="header-right">
+      <!-- ✅ เพิ่มไอคอนแจ้งเตือน -->
+      <div class="notification" id="notif-icon">
+        🔔
+        <span id="new-count" class="badge">0</span>
+      </div>
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </div>
+</header>
+
+<!-- เมนูที่ซ่อนอยู่ -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-box">
+    <span class="close-menu" onclick="toggleMenu()">✕</span>
+    <ul>
+      <li><a href="./ongoing.html">หน้าแรก</a></li>
+      <li><a href="./HistoryAdmin/historyAdmin.html">ประวัติการจองทั้งหมด</a></li>
+      <li><a href="./foodList.html">แก้ไขเมนู</a></li>
+      <li><a href="./main.html" class="logout">ออกจากระบบ</a></li>
+    </ul>
+  </div>
+</div>
+
+<main>
+  <h2>แจ้งเตือนการจอง <span id="new-count-main" class="badge">0</span></h2>
+  <div id="notification-list">
+    <p>กำลังโหลดข้อมูลแจ้งเตือน...</p>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+/* ✅ ใช้ระบบเปิด–ปิดเมนูแบบเดียวกับ profile.html */
+function toggleMenu() {
+  const menu = document.getElementById("menuOverlay");
+  if (menu) menu.classList.toggle("active");
+}
+
+const logoutBtn = document.querySelector(".logout");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../loginEmployee.html";
+  });
+}
+
+let notifications = [];
+let confirmedReservations = JSON.parse(localStorage.getItem("confirmedReservations") || "[]");
+
+async function fetchNotifications() {
+  try {
+    const res = await axios.get("http://127.0.0.1:8080/api/admin/reservations/notifications");
+    if (res.data.status === "success") {
+      const fetched = res.data.notifications.map(n => ({ ...n, isNew: !n.isRead }));
+      const unique = [];
+      const seen = new Set();
+      for (const n of fetched) {
+        const confirmKey = `${n.reservation_id}_${n.type}`;
+        if (!seen.has(n.reservation_id) && !confirmedReservations.includes(confirmKey)) {
+          unique.push(n);
+          seen.add(n.reservation_id);
+        }
+      }
+      notifications = unique;
+      renderNotifications();
+    } else {
+      document.getElementById("notification-list").innerHTML = "<p>ไม่พบแจ้งเตือน</p>";
+    }
+  } catch (err) {
+    console.error(err);
+    document.getElementById("notification-list").innerHTML = "<p>เกิดข้อผิดพลาดในการโหลดข้อมูล</p>";
+  }
+}
+
+function renderNotifications() {
+  const container = document.getElementById("notification-list");
+  container.innerHTML = "";
+
+  const newCount = notifications.filter(n => n.isNew).length;
+  document.getElementById("new-count").textContent = newCount;
+  document.getElementById("new-count-main").textContent = newCount;
+
+  // ✅ อัปเดตค่าให้ ongoing.html ด้วย
+  localStorage.setItem("new_notifications", newCount);
+
+  if (notifications.length === 0) {
+    container.innerHTML = "<p>ไม่มีแจ้งเตือน</p>";
+    return;
+  }
+
+  notifications.forEach(n => {
+    const card = document.createElement("div");
+    card.className = "notification-card" + (n.isNew ? " new" : "");
+
+    let typeLabel = "";
+    let confirmText = "";
+    let confirmEndpoint = "";
+
+    if (n.type === "new_reservation") {
+      typeLabel = "จองใหม่";
+      confirmText = "ยืนยันการจอง";
+      confirmEndpoint = `http://127.0.0.1:8080/api/admin/reservations/${n.reservation_id}/confirm`;
+    } else if (n.type === "reschedule") {
+      typeLabel = "เลื่อนวันจอง";
+      confirmText = "ยืนยันการเลื่อน";
+      confirmEndpoint = `http://127.0.0.1:8080/api/admin/reservations/${n.reservation_id}/reschedule/confirm`;
+    } else {
+      typeLabel = "แจ้งเตือนทั่วไป";
+    }
+
+    card.innerHTML = `
+      <h3>${typeLabel} - ${n.course_name}</h3>
+      <p>ลูกค้า: ${n.user_name}</p>
+      <p>วันที่: ${n.date} เวลา: ${n.reservation_hour}</p>
+      <span class="view-details">ดูรายละเอียด</span>
+      <div class="button-container" style="margin-top:8px;"></div>
+      <div class="extra-info">
+        <p>อีเมล: ${n.user_email}</p>
+        <p>เบอร์โทร: ${n.user_phone}</p>
+        <p>จำนวนคน: ${n.number_of_people}</p>
+        <p>ราคา: ${n.total_price} บาท</p>
+      </div>
+    `;
+
+    const btn = card.querySelector(".view-details");
+    const extra = card.querySelector(".extra-info");
+    const btnContainer = card.querySelector(".button-container");
+
+    const confirmBtn = document.createElement("button");
+    confirmBtn.className = "confirm-btn";
+    confirmBtn.textContent = confirmText;
+    btnContainer.appendChild(confirmBtn);
+
+    btn.addEventListener("click", () => {
+      const isOpen = extra.style.display === "block";
+      extra.style.display = isOpen ? "none" : "block";
+      btn.textContent = isOpen ? "ดูรายละเอียด" : "ปิดรายละเอียด";
+    });
+confirmBtn.addEventListener("click", async () => {
+  const confirmMsg = n.type === "reschedule"
+    ? "ยืนยันการเลื่อนและส่ง Email ไปยังลูกค้า?"
+    : "ยืนยันการจองและส่ง Email ไปยังลูกค้า?";
+  if (confirm(confirmMsg)) {
+    try {
+      const res = await axios.put(confirmEndpoint);
+      if (res.data.status === "success") {
+        const confirmKey = `${n.reservation_id}_${n.type}`;
+        confirmedReservations.push(confirmKey);
+        localStorage.setItem("confirmedReservations", JSON.stringify([...new Set(confirmedReservations)]));
+
+        // ✅ อัปเดตแจ้ง ongoing.html ให้โหลดใหม่
+        localStorage.setItem("new_notifications", "0");
+        localStorage.setItem("confirmedReservationsEvent", Date.now().toString());
+
+        notifications = notifications.filter(item => item.reservation_id !== n.reservation_id);
+        card.remove();
+
+        const newCountAfter = notifications.filter(n => n.isNew).length;
+        document.getElementById("new-count").textContent = newCountAfter;
+        document.getElementById("new-count-main").textContent = newCountAfter;
+        localStorage.setItem("new_notifications", newCountAfter);
+
+        alert(res.data.message);
+      } else {
+        alert("เกิดข้อผิดพลาด: " + res.data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("เกิดข้อผิดพลาดในการยืนยัน");
+    }
+  }
+});
+
+
+    container.appendChild(card);
+  });
+  
+}
+
+fetchNotifications();
+setInterval(fetchNotifications, 2000);
+
+
+</script>
+</body>
+</html>

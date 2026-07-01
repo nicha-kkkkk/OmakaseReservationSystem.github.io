@@ -1,0 +1,1471 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #4b0000;
+    line-height: 1.6;
+}
+/* สำหรับมือถือทั่วไป (จอเล็กกว่า 600px) */
+@media (max-width: 600px) {
+  .footer-row {
+    flex-direction: column;
+    text-align: left;
+  }
+  .footer-right {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .course img {
+    width: 200px;     /* ให้พอดีกับจอมือถือ */
+    max-width: 80%;
+    height: auto;
+  }
+}
+
+/* สำหรับ iPad แนวนอน (จอกว้างกว่า 900px)*/
+@media (min-width: 900px) {
+  .course img {
+    width: 350px;
+  }
+}
+
+/* สำหรับจอใหญ่อย่าง MacBook, Desktop */
+@media (min-width: 1200px) {
+  .course {
+    max-width: 1000px;
+    margin: auto;
+  }
+} 
+
+ /* ───────── HEADER ───────── */
+header {
+    background-color: #730606;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header-left {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-left img {
+    width: 100px;
+}
+@media (max-width: 600px) {
+  .header-left img {
+    width: 90px;
+  }
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    margin-right: 10px;
+    gap: 9px;
+}
+@media (max-width: 900px) {
+  .header-right {
+    gap: 7px;
+  }
+}
+
+.btn-header {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    border: 1px solid white;
+}
+
+
+
+.btn-register {
+    background-color: transparent;
+}
+.btn-register:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+.btn-login {
+    background-color: transparent;
+}
+.btn-login:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+
+
+/* ───────── MENU OVERLAY ───────── */
+.menu-icon {
+    display: block;
+    font-size: 26px;
+    margin-left: 3px;
+    margin-right: -10px;
+    cursor: pointer;
+  }
+
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  justify-content: flex-end;   
+  align-items: flex-start;     
+  padding-top: 60px;           
+  padding-right: 15px;         
+}
+
+/* เมื่อกด ☰  */
+.menu-overlay.active {
+  display: flex;
+}
+
+.menu-overlay.active .menu-box {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu-box {
+  background: #fff;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 15px 10px 10px;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.menu-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0 0;
+}
+.menu-box li {
+  border-bottom: 1px solid rgba(150,0,0,0.2);
+  margin-bottom: 10px;
+}
+
+.menu-box a {
+  text-decoration: none;
+  color: #7b0000;
+  font-weight: 600;
+  display: block;
+  padding-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.close-menu {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 20px;
+  color: #7b0000;
+  cursor: pointer;
+}
+
+.menu-box a:hover {
+  color: #b30000;
+}
+
+.close-menu:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+/* ───────── logo ───────── */
+.logo {
+    text-align: center;
+    margin: 25px 0 10px;
+    margin-bottom: -20px;
+}
+.logo img {
+    width: 200px;
+}
+@media (max-width: 600px) {
+  .logo img {
+    width: 150px;
+  }
+}
+.foodintro {
+    text-align: center;
+    margin: 0 0 20px;
+}
+.foodintro img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+@media (max-width: 600px) {
+  .foodintro img {
+    width: 350px;
+  }
+}
+
+/* ───────── BODY ───────── */
+.intro {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.course {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding: 30px 15px;
+}
+.course h2 {
+    color: #b30000;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.course img {
+  width: 220px;              /* เดิม 200px → เพิ่มเป็น 320px */
+  max-width: 90%;            /* ป้องกันไม่ให้ใหญ่เกินขอบ container */
+  border-radius: 16px;       /* มุมมนสวย ๆ */
+  margin: 15px 0;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course p {
+    margin: 5px 0 10px;
+    font-size: 14px;
+}
+.course ul {
+  text-align: left;
+  display: inline-block;
+  padding-left: 25px;
+  font-size: 16px;          
+  line-height: 1.8;        
+  color: #222;              
+  font-weight: 400;         
+}
+@media (max-width: 600px) {
+  .course ul {
+    font-size: 14px;       
+    line-height: 1.7;
+  }
+}
+
+.reserve-btn {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+@media (max-width: 600px) {
+  .reserve-btn {
+    display: block;
+    margin-left: auto;    
+    margin-right: 0;
+    width: fit-content;  
+  }
+}
+
+
+.footer {
+    background-color: #800000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* ───────── CHEF SECTION ───────── */
+.chef-section {
+  background: linear-gradient(180deg, #3a0000 0%, #5a0000 100%);
+  color: #fff;
+  padding: 80px 10%;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+.chef-intro {
+  font-size: 1.1rem;
+  color: #f2e7c9;
+  margin: 0 auto 60px auto;
+  max-width: 700px;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+
+.chef-heading {
+  margin-top: -30px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f9d97a;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.chef-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.chef-card {
+  flex: 1 1 30%;       
+  max-width: 360px;      /* จำกัดความกว้างไม่ให้เกินนี้ */
+   min-width: 250px; 
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chef-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.chef-photo img {
+  width: 100%;
+  height: 220px;         /* เดิม 300px → ลดความสูงรูป */
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.chef-info {
+  padding: 18px 20px;    
+  text-align: left;
+}
+
+.chef-info h3 {
+  margin-top: -5px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f9d97a;
+}
+
+.chef-title {
+  font-size: 0.9rem;
+  color: #d4af37;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.chef-description {
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.chef-quote {
+  font-size: 0.8rem;
+  border-left: 3px solid #d4af37;
+  padding-left: 10px;
+}
+
+@media (max-width: 600px) {
+  .chef-card {
+    width: 90%;
+    max-width: 500px; /* จำกัดไม่ให้กว้างเกิน */
+    margin: 0 auto;   /* เผื่อ browser ไม่ support align-items */
+  }
+  .chef-info {
+    text-align: center;
+  }
+  .chef-quote {
+    border-left: none;
+    border-top: 2px solid #d4af37;
+    padding-top: 10px;
+  }
+  .chef-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+
+/* ====== Footer ====== */
+footer {
+    font-family: "Prompt", sans-serif;
+}
+
+/* ส่วนบนพื้นแดงเข้ม */
+.footer-top {
+    background-color: #730606;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 30px;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+    width: 45%;
+    min-width: 200px;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    line-height: 1.4em;
+}
+
+.footer-right .social-icons {
+    margin: 8px 0;
+}
+
+.footer-right .social-icons img {
+    height: 22px;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.footer-right .social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* ส่วนล่างโลโก้ทองพื้นขาว */
+.footer-bottom {
+    background-color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer-bottom img {
+    height: 40px;
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 428px) {
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-left,
+    .footer-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .footer-right .social-icons img {
+        height: 25px;
+    }
+
+    .footer-bottom img {
+        height: 35px;
+    }
+}
+
+
+
+/* ───────── FORM (register / login / profile) ───────── */
+
+.form-box {
+  width: 100%;
+  max-width: 380px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  padding: 25px 25px 30px;
+  text-align: center;
+  border-top: 5px solid #7b0000;
+}
+
+.form-box h2 {
+  color: #7b0000;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.form-box input {
+  width: 90%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Prompt', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.form-box input:focus {
+  outline: none;
+  border-color: #b30000;
+  box-shadow: 0 0 5px rgba(179, 0, 0, 0.2);
+}
+
+.form-box button {
+  background-color: #7b0000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  width: 90%;
+  font-weight: 500;
+}
+
+.form-box button:hover {
+  background-color: #9b1a1a;
+  transform: scale(1.02);
+}
+
+/* ───────── LOGO SECTION ───────── */
+.logo img {
+  width: 180px;
+  margin-top: 20px;
+}
+@media (max-width: 600px) {
+  .logo img {
+    width: 140px;
+    margin-top: 10px;
+  }
+}
+
+
+
+/* ───────── FORM BOX (ใช้กับ login / register / profile) ───────── */
+
+/* ───────── LOGIN FORM ───────── */
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 25px 25px 35px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.login-box h2 {
+  color: #7b0000;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* ช่อง input */
+.login-box input {
+  width: 90%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: 'Prompt', sans-serif;
+  font-size: 14px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.login-box input:focus {
+  outline: none;
+  border: 1px solid #b30000;
+  box-shadow: 0 0 5px rgba(179, 0, 0, 0.2);
+}
+
+/* ปุ่มลืมรหัส + ยืนยัน */
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  padding: 0 20px;
+}
+
+/* ลิงก์ "ลืมรหัสผ่าน" */
+.login-actions a {
+  color: #7b0000;
+  font-size: 13px;
+  text-decoration: none;
+}
+.login-actions a:hover {
+  text-decoration: underline;
+}
+
+/* ปุ่ม "ยืนยัน" */
+.login-actions button {
+  background-color: #7b0000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 24px;              
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+  width: auto;                    
+  min-width: 100px;              
+}
+
+
+.login-actions button:hover {
+  background-color: #a20000;
+  transform: scale(1.05);
+}
+
+/* Google button */
+.google-login {
+  width: 85%;
+  border-radius: 25px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 10px 0;
+  font-weight: 500;
+  margin: 20px auto 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+.google-login img {
+  width: 20px;
+  height: 20px;
+}
+.google-login:hover {
+  background-color: #f9f9f9;
+  transform: scale(1.03);
+}
+
+/* สมัครสมาชิก */
+.login-box .register-link {
+  display: block;
+  margin-top: 10px;
+  color: #7b0000;
+  font-size: 13px;
+  text-decoration: none;
+}
+.login-box .register-link:hover {
+  text-decoration: underline;
+}
+
+/* ปุ่มย้อนกลับ */
+.login-back {
+  text-align: left;
+  margin-left: 10%;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+.login-back a {
+  background-color: #7b0000;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.login-back a:hover {
+  background-color: #a20000;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .login-box {
+    width: 80%;
+    padding: 20px 15px 25px;
+  }
+  .login-actions {
+    width: 90%;
+    margin: 10px auto 0;
+    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .login-actions button {
+    padding: 8px 18px;
+    min-width: 90px;
+    font-size: 13px;
+  }
+  .login-back {
+    margin-left: 5%;
+  }
+}
+
+
+
+
+/* ───────── REGISTER FORM ───────── */
+.register-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  padding: 25px 25px 35px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.register-box input {
+  width: 90%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: 'Prompt', sans-serif;
+  font-size: 14px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.register-box input:focus {
+  outline: none;
+  border: 1px solid #b30000;
+  box-shadow: 0 0 5px rgba(179, 0, 0, 0.2);
+}
+
+/* ───────── ปุ่มอยู่นอกฟอร์ม ───────── */
+.register-buttons {
+  width: 100%;
+  max-width: 400px;
+  margin: 25px auto 60px;
+  display: flex;
+  justify-content: space-between;  /* แยกซ้าย-ขวา */
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px; 
+}
+
+/* ปุ่มแต่ละอัน */
+.register-buttons a,
+.register-buttons button {
+  min-width: 110px;         /* ปุ่มสั้นลง */
+  text-align: center;
+  background-color: #7b0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.register-buttons a:hover,
+.register-buttons button:hover {
+  background-color: #a20000;
+  transform: scale(1.05);
+}
+
+
+.register-buttons .back-btn {
+  background-color: #7a1b1b;
+}
+.register-buttons .back-btn:hover {
+  background-color: #7a1b1b;
+}
+
+/* ───────── Responsive (Mobile) ───────── */
+@media (max-width: 600px) {
+  .register-box {
+    width: 80%;
+    padding: 20px 15px 25px;
+  }
+
+  .register-buttons {
+    width: 90%;
+    margin: 20px auto 40px;
+    padding: 0 15px;
+    gap: 15px;
+    justify-content: space-between;
+  
+  }
+
+  .register-buttons a,
+  .register-buttons button {
+    width: 45%;
+    font-size: 13px;
+    padding: 8px 0;
+    
+  }
+}
+
+
+
+/* ───────── PROFILE FORM ───────── */
+
+.form-box, .profile-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  margin: 40px auto;
+  border-radius: 10px;
+  padding: 25px 25px 35px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.form-box h2, .profile-box h2 {
+  color: #7b0000;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* ───────── INPUT ───────── */
+.form-box input, .profile-box input {
+  width: 90%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.form-box input:focus, .profile-box input:focus {
+  outline: none;
+  border: 1px solid #b30000;
+  box-shadow: 0 0 5px rgba(179,0,0,0.2);
+}
+
+/* ───────── BUTTONS ───────── */
+button, .back-btn {
+  background-color: #7b0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+}
+button:hover, .back-btn:hover {
+  background-color: #8a2222;
+  transform: scale(1.05);
+}
+.back-btn {
+  background-color: #7b0000;
+}
+.back-btn:hover {
+  background-color: #8a2222;
+}
+
+
+
+/* ───────── FORM ACTION AREA ───────── */
+.form-buttons, .profile-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 25px;
+}
+
+/* ───────── PROFILE EDIT BUTTON ───────── */
+.profile-box h2 {
+  position: relative;
+}
+.profile-box .edit-btn {
+  position: absolute;
+  right: 30px;
+  top: 26px;
+  font-size: 13px;
+  color: #7b0000;
+  cursor: pointer;
+}
+
+.profile-buttons a,
+.profile-buttons button {
+  min-width: 120px;
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+
+@media (max-width: 600px) {
+  .form-buttons, .profile-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
+    margin-top: 20px;
+  }
+
+  .profile-buttons a,
+  .profile-buttons button {
+    width: 90%;
+    padding: 10px 0;
+    text-align: center;
+  }
+}
+
+
+
+
+/* ───────── foodList.css ───────── */
+/* foodList.css */
+#price-container{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    padding: 12px 0px 12px 0px;
+}
+
+#price-box{
+    display: flex;
+    width: 144px;
+    height: 56px;
+    border: 1px solid #A5A5A5;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    margin-left: 24px;
+}
+
+.foodList-contianer{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.foodList-box{
+    width: 80%;
+    margin-left: 10%;
+    height: 32px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+
+}
+
+.foodList-button{
+    width: 20%;
+    height: 32px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    margin-left: 10%;
+    background-color: #7B0000;
+    color: white;
+}
+
+#confirm-button{
+    margin-right: 10%;
+}
+
+.foodList-box-container{
+    display: flex;
+    width: 100%;
+    height: 96px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    flex-direction: column;
+}
+
+.photoInput{
+    margin-left: 10%;
+    width: 20%;
+    height: 32px;
+}
+
+.labelPhoto{
+    margin-left: 10%;
+}
+
+#comfirm-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+/* modal รูป */
+.food-card img {
+  width: 160px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.food-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+.view-all {
+  background: transparent;    
+  color: #a62b2b;            
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.view-all:hover {
+  /* background: #a62b2b;         */
+  color: #fff;                 /* ตัวอักษรขาว */
+}
+
+
+.course {
+  border: none;               
+  box-shadow: none;           
+  background: transparent;    
+  padding: 0;
+  margin-bottom: 60px;        
+}
+
+
+
+
+
+
+
+/* ───────── ongoing.css ───────── */
+.month-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#month{
+    font-size: 24px;
+    font-weight: 600;
+}
+.arrow-left{
+    width: 64px;
+    height: 64px;
+    top: 50%;
+    cursor: pointer;
+}
+.arrow-right{
+    width: 64px;
+    height: 64px;
+    top: 50%;
+    cursor: pointer;
+}
+.day-card{
+    font-size: small;
+    width: 52px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #D9D9D9;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== ปฏิทินวัน ===== */
+#day-container {
+  display: flex;
+  justify-content: center;   /* ✅ จาก space-around → center */
+  align-items: center;
+  gap: 24px;                 /* ✅ ควบคุมระยะห่างระหว่างช่องแต่ละวัน */
+  flex-wrap: wrap;           /* ✅ กันล้นเวลาหน้าจอเล็ก */
+  margin-top: 10px;
+}
+
+#history-icon-container{
+    width: 100%;
+    height: 72px;
+    display: flex;;
+    align-items: center;
+    justify-content: right;
+}
+
+#history-icon-box{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10%;
+}
+
+#history-icon{
+    width: 24px;
+    height: 24px;
+}
+
+
+/* ===== ปรับหัวข้อหลัก ===== */
+#ongoing-title {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 22px;
+  font-weight: 700;
+  color: #5e0b0b;
+
+  /* ✅ กำหนด margin-left ให้เป็นจุดอ้างอิงแนวตั้งของเวลา */
+  margin-left: 170px;
+}
+
+.card-time {
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  color: #5e0b0b;
+  margin-left: 180px;     /* ให้ตรงกับหัวข้อดำเนินการ */
+  margin-right: 60px;     /* ✅ เพิ่มช่องว่างทางขวาระหว่างเวลาและจุด/เส้น */
+  margin-bottom: 10px;
+}
+
+
+.ongoing-card {
+  width: 80%;
+  font-size: 17px;
+  margin-top: 50px;     
+  margin-bottom: 20px;
+}
+
+
+#ongoing-container {
+  width: 100%;
+  position: relative;
+}
+
+/* ✅ ปรับระยะห่างระหว่างเวลาและกล่อง */
+.open-all-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 200px; /* ← ระยะห่างระหว่างเวลาและกล่อง */
+  margin-bottom: 25px;
+  
+}
+
+
+.close-card-line{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+/* ===== กล่องข้อมูลภายใน ===== */
+.open-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.open-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #5e0b0b;
+  font-size: 14px;
+}
+
+.open-card-footer-unit{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.close-card-line-container {
+  flex: 5;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -10px;
+  height: 18px; 
+}
+
+.close-card-circle {
+  width: 13px;
+  height: 13px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  margin-top: 0; 
+}
+
+.close-card-line {
+  flex: 1;
+  height: 2px;
+  background-color: #000;
+  margin-top: 0;
+}
+
+
+.day-card {
+  font-size: 16px;
+  width: 64px;               /* ✅ ปรับขนาดให้เท่ากันทุกช่อง */
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background-color: #d9d9d9;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* เมื่อเลือกวัน */
+.day-card.active-day {
+  background-color: #730606;
+  color: white;
+  transform: scale(1.05);
+}
+
+
+
+/* หัวข้อ */
+.open-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5e0b0b;
+  margin-bottom: 8px;
+}
+
+
+/* รายละเอียด */
+.open-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #5e0b0b;
+  font-size: 14px;
+}
+
+
+/* แถวข้อมูล */
+.open-card-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  color: #5e0b0b;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* หน่วยข้อมูล */
+.open-card-footer-unit {
+  flex: 1;
+}
+
+/* ปุ่มดูเพิ่มเติม */
+.view-more {
+  color: #0047ff;
+  text-decoration: underline;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+  text-align: right;
+  display: block;
+}
+
+/* จุดและเส้น timeline */
+.close-card-line-container {
+  align-items: center;
+  display: flex;
+  gap: 2px;  
+  align-items: center;
+  margin-left: -12px;
+  margin-top: -8px;
+}
+
+.close-card-circle {
+  width: 10px;
+  height: 10px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.close-card-line {
+  flex-grow: 1;
+  height: 1.5px;
+  background-color: #000;
+}
+
+
+/* ✅ เส้น timeline ด้านล่าง */
+.close-all-card {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-top: 8px;         
+}
+
+
+/* ───────── ongoing.css ───────── */
+/* ส่วน desktop เดิม (ของคุณ) — คงไว้ทั้งหมดด้านบน */
+
+/* ✅ ส่วนเพิ่มเติมสำหรับหน้าจอโทรศัพท์ */
+@media (max-width: 600px) {
+  #day-container {
+    justify-content: space-evenly; /* ✅ กระจายเต็มหน้าจอแบบสมดุล */
+    gap: 12px;                     /* ลดช่องว่างให้เหมาะกับจอเล็ก */
+  }
+
+  .day-card {
+    width: 52px;                  /* ลดขนาดช่องวัน */
+    height: 84px;
+    font-size: 14px;
+  }
+
+  /* หัวข้อ “ดำเนินการ” */
+  #ongoing-title {
+    font-size: 18px;
+    margin-left: 72px; /* ให้ตรงแนวเวลา */
+    margin-bottom: 12px;
+  }
+
+  /* Container หลักแต่ละช่วงเวลา */
+  .open-all-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;                /* ระยะห่างระหว่างเวลาและกล่อง */
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  /* เวลา (11:00 / 12:00 / 13:00) */
+  .card-time {
+    font-size: 15px;
+    font-weight: 700;
+    color: #5e0b0b;
+    width: 68px;             /* ความกว้างคงที่ให้เรียงแนวเดียวกัน */
+    text-align: right;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 5px;
+    margin-right: 12px
+  }
+
+  /* จุด timeline */
+  .close-card-circle {
+    width: 7px;
+    height: 7px;
+    background-color: #cfcfcf;
+    border-radius: 50%;
+    margin-top: 14px;
+    margin-left: 6px; 
+  }
+
+  /* เส้น timeline */
+  .close-card-line {
+    width: 24px;
+    height: 1.2px;
+    background-color: #000;
+    opacity: 0.4;
+    margin-top: 16px;
+  }
+
+  /* กล่องข้อมูล Omakase */
+  .open-card {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    margin-left: auto;   
+    margin-right: 0;
+    background: #fff;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  /* หัวข้อภายในกล่อง */
+  .open-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #5e0b0b;
+    margin-bottom: 4px;
+  }
+
+  /* รายละเอียด */
+  .open-card-footer-inner {
+    font-size: 12px;
+  }
+
+  /* ปุ่มดูเพิ่มเติม */
+  .view-more {
+    font-size: 12px;
+    color: #0047ff;
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ปรับ container timeline ทั้งหมด */
+  #ongoing-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  /* เส้น timeline ระหว่างเวลา */
+  .close-all-card {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+}
+

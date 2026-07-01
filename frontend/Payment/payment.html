@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitsune Omakase</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../picture/header.png" alt="Kitsune Omakase">
+        </div>
+        <nav>
+            <button class="menu-toggle">☰</button>
+            <div class="nav-menu">
+                <a href="../profile.html">ข้อมูลสมาชิก</a>
+                <a href="../reserve.html">จองคอร์สอาหาร</a>
+                <a href="../History/history.html">ประวัติการจอง</a>
+                <a href="../login.html" class="logout">ออกจากระบบ</a>
+            </div>
+        </nav>
+
+    </header>
+<!--เพิ่มข้อมูลและตกแต่ง-->
+<main>
+ <section class="payment-form">
+    <div class="payment-card">
+        <div class="course-title">Omakase 499+ (7 Courses)</div>
+        <div class="payment-info">
+            <p>วันที่ <span id="bookingDate">14/09/2568</span></p>
+            <!-- เพิ่มแก้ไข เวลา ดึงจาก API -->
+            <p>เวลา <span id="bookingTime">10:00</span></p>
+            <p>จำนวนคน <span id="numPeople">5 คน</span></p>
+            <p>ราคา <span id="totalPrice">499 บาท</span></p>
+        </div>
+        <a href="#" class="toggle-details" id="toggleDetails">ดูเพิ่มเติม</a>
+
+        <div class="extra-details" id="extraDetails" style="display: none;">
+        </div>
+    </div>
+
+    <button id="qrBtn" class="payment-option">📱 QR พร้อมเพย์</button>
+    <button id="cardBtn" class="payment-option">💳 บัตรเครดิต/เดบิต</button>
+
+    <!-- Popup QR -->
+    <div id="qrPopup" class="popup-overlay">
+        <div class="popup-content">
+            <img src="../img/Vector.png" alt="QR Code" class="qr-image">
+            <p>ชำระให้ KITSUNE</p>
+            <h3 id="qrPrice">499.00 บาท</h3>
+            <div class="popup-buttons">
+                <button id="closePopup" class="cancel-btn">ยกเลิก</button>
+                <button class="confirm-btn">บันทึก</button>
+            </div>
+        </div>
+    </div>
+    <!-- Popup ฟอร์มบัตรเครดิต -->
+<div id="cardPopup" class="popup-overlay">
+  <div class="popup-content">
+    <h3>ชำระเงินด้วยบัตรเครดิต/เดบิต</h3>
+
+    <form id="cardForm">
+      <div class="form-group">
+        <label>หมายเลขบัตร</label>
+        <input type="text" placeholder="xxxx xxxx xxxx xxxx" maxlength="19" required>
+      </div>
+
+      <div class="form-group-row">
+        <div class="form-group">
+          <label>วันหมดอายุ</label>
+          <input type="text" placeholder="MM/YY" maxlength="5" required>
+        </div>
+        <div class="form-group">
+          <label>CVV</label>
+          <input type="text" placeholder="•••" maxlength="3" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ชื่อบนบัตร</label>
+        <input type="text" placeholder="เช่น KITTI RAKSADEE" required>
+      </div>
+
+      <div class="popup-buttons">
+        <button type="button" id="cancelCard" class="cancel-btn">ยกเลิก</button>
+        <button type="submit" class="confirm-btn">ยืนยัน</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</section>
+
+
+</main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-left">
+                <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+                <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+                <p>เวลาเปิดทำการ</p>
+                <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+            </div>
+
+            <div class="footer-right">
+                <p>เบอร์โทรศัพท์</p>
+                <p>(+66) 94-970-9780</p>
+                <div class="social-icons">
+                    <img src="../img/Line.png" alt="Line">
+                    <img src="../img/Facebook.png" alt="Facebook">
+                    <img src="../img/instagram.png" alt="Instagram">
+                </div>
+                <p>เวลาเปิดทำการ</p>
+                <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <img src="../picture/namelogo.png" alt="Kitsune Omakase Logo">
+        </div>
+    </footer>
+
+</body>
+<script src="payment.js"></script>
+
+</html>
+

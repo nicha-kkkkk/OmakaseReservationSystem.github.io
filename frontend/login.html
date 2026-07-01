@@ -1,0 +1,131 @@
+
+<!--frontend/login.html-->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ | KITSUNE OMAKASE</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <div class="header-left"><img src="/frontend/picture/header.png" alt="logo"></div>
+    <div class="header-right">
+      <a href="register.html" class="btn-header btn-register">สมัครสมาชิก</a>
+      <a href="login.html" class="btn-header btn-login">เข้าสู่ระบบ</a>
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
+
+  <!-- เมนูที่ซ่อนอยู่ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-box">
+      <span class="close-menu" onclick="toggleMenu()">✕</span>
+      <ul>
+        <li><a href="login.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="login.html">จองคอร์สอาหาร</a></li>
+        <li><a href="login.html">ประวัติการจอง</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="logo"><img src="/frontend/picture/logo.png" alt="Kitsune"></div>
+
+  <form id="loginForm" class="login-box">
+    <h2>เข้าสู่ระบบ</h2>
+    <input id="email" type="email" name="email" placeholder="อีเมล" required>
+    <input id="password" type="password" name="password" placeholder="รหัสผ่าน" required>
+
+    <div class="login-actions">
+      <a href="forgot-password.html">ลืมรหัสผ่าน</a>
+      <button type="submit">ยืนยัน</button>
+    </div>
+
+    <button type="button" class="google-login">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+      Google
+    </button>
+
+    <a href="register.html" class="register-link">สมัครสมาชิก</a>
+  </form>
+
+  <div class="login-back">
+    <a href="main.html">ย้อนกลับ</a>
+  </div>
+
+<footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+        <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+        <p>เวลาเปิดทำการ</p>
+        <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+      </div>
+
+      <div class="footer-right">
+        <p>เบอร์โทรศัพท์</p>
+        <p>(+66) 94-970-9780</p>
+        <div class="social-icons">
+          <img src="./img/line.png" alt="Line">
+          <img src="./img/Facebook.png" alt="Facebook">
+          <img src="./img/instagram.png" alt="Instagram">
+        </div>
+        <p>เวลาเปิดทำการ</p>
+        <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <img src="./picture/namelogo.png" alt="Kitsune Omakase Logo">
+    </div>
+  </footer>
+
+
+
+  
+  <!-- ───────── SCRIPT ───────── -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = Object.fromEntries(new FormData(e.target).entries());
+      const { email, password } = formData;
+
+      try {
+        const res = await fetch("http://127.0.0.1:8080/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          alert(data.error || "อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+          return;
+        }
+
+        // ✅ บันทึก token และข้อมูลผู้ใช้
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.user._id);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        alert("เข้าสู่ระบบสำเร็จ!");
+        window.location = "reserve.html";
+      } catch (err) {
+        console.error("Login Error:", err);
+        alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง");
+      }
+    });
+
+    function toggleMenu() {
+      const menu = document.getElementById('menuOverlay');
+      if (menu) menu.classList.toggle('active');
+    }
+
+
+  </script>
+
+</body>
+</html>

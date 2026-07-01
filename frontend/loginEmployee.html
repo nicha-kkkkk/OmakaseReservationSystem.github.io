@@ -1,0 +1,133 @@
+<!--frontend/loginEmployee.html-->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ | KITSUNE OMAKASE</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <div class="header-left"><img src="/frontend/picture/header.png" alt="logo"></div>
+  </header>
+
+  <div class="logo"><img src="/frontend/picture/logo.png" alt="Kitsune"></div>
+
+  <form id="loginForm" class="login-box" onsubmit="login(event)">
+    <h2>เข้าสู่ระบบ</h2>
+    <input type="email" id="email" placeholder="อีเมล" required>
+    <input type="password" id="password" placeholder="รหัสผ่าน" required>
+    <div class="login-actions">
+      <button type="submit">ยืนยัน</button>
+    </div>
+  </form>
+
+<footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+        <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+        <p>เวลาเปิดทำการ</p>
+        <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+      </div>
+
+      <div class="footer-right">
+        <p>เบอร์โทรศัพท์</p>
+        <p>(+66) 94-970-9780</p>
+        <div class="social-icons">
+          <img src="./img/line.png" alt="Line">
+          <img src="./img/Facebook.png" alt="Facebook">
+          <img src="./img/instagram.png" alt="Instagram">
+        </div>
+        <p>เวลาเปิดทำการ</p>
+        <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <img src="./picture/namelogo.png" alt="Kitsune Omakase Logo">
+    </div>
+  </footer>
+
+  <!-- ───────── SCRIPT ───────── -->
+  <script>
+async function login(e) {
+  e.preventDefault(); // ✅ ป้องกัน reload หน้า
+  console.log("✅ login() ถูกเรียกแล้ว");
+
+  try {
+    const response = await fetch("http://127.0.0.1:8080/api/staff/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      }),
+    });
+
+    const data = await response.json();
+    console.log("Response JSON:", data);
+
+    if (response.ok && data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("staffName", data.staff.name);
+      alert("เข้าสู่ระบบสำเร็จ!");
+      window.location.href = "./ongoing.html";
+    } else {
+      alert(data.message || "เข้าสู่ระบบไม่สำเร็จ");
+    }
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("เกิดข้อผิดพลาดระหว่างเข้าสู่ระบบ");
+  }
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('menuOverlay');
+  if (menu) menu.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
+
+
+
+<!-- 
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = Object.fromEntries(new FormData(e.target).entries());
+
+      try {
+        const res = await fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+
+        // ✅ ตรวจสอบกรณี error จาก backend
+        if (!res.ok) {
+          alert(data.error || "อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+          return;
+        }
+
+        // ✅ เก็บ token และ userId ใน localStorage
+        if (data.token && data.user && data.user._id) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", data.user._id);
+          alert("เข้าสู่ระบบสำเร็จ!");
+          // ไปหน้า 'จองคอร์สอาหาร'
+          window.location = "reserve.html";
+        } else {
+          alert("ไม่สามารถเข้าสู่ระบบได้: ข้อมูลไม่ครบจากเซิร์ฟเวอร์");
+        }
+
+      } catch (err) {
+        console.error("Login Error:", err);
+        alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง");
+      }
+    });

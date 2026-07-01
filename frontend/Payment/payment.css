@@ -1,0 +1,655 @@
+
+/* ====== Base Style ====== */
+body {
+    font-family: "Prompt", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #3a3a3a;
+}
+
+/* ====== Header ====== */
+/* header: ใช้ flexbox จัดแนวกลาง */
+header {
+    background-color: #730606;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* ทำให้โลโก้และปุ่มอยู่ตรงกึ่งกลางแนวตั้ง */
+    padding: 12px 18px;
+    position: relative;
+    z-index: 100;
+}
+
+/* logo อยู่ตรงกลางแนวตั้ง */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    /* ลบ padding-top ที่ทำให้เบี้ยว */
+}
+
+header .logo img {
+    height: 38px;
+    display: block;
+}
+
+/* ====== Footer ====== */
+footer {
+    font-family: "Prompt", sans-serif;
+}
+
+/* ส่วนบนพื้นแดงเข้ม */
+.footer-top {
+    background-color: #730606;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 30px;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+    width: 45%;
+    min-width: 200px;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    line-height: 1.4em;
+}
+
+.footer-right .social-icons {
+    margin: 8px 0;
+}
+
+.footer-right .social-icons img {
+    height: 22px;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.footer-right .social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* ส่วนล่างโลโก้ทองพื้นขาว */
+.footer-bottom {
+    background-color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer-bottom img {
+    height: 40px;
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 428px) {
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-left,
+    .footer-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .footer-right .social-icons img {
+        height: 25px;
+    }
+
+    .footer-bottom img {
+        height: 35px;
+    }
+}
+
+/* ปุ่มเมนู (Hamburger) */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 12px;
+    /* เว้นระยะจากเนื้อหา */
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
+}
+
+/* กล่องเมนู popup ที่เล็กอยู่มุมขวา (top คำนวณเท่ากับ header height + offset) */
+.nav-menu {
+    position: fixed;
+    /* วางให้อยู่ใต้ header โดยประมาณ (header padding 12px + logo height 38px = 50px) */
+    top: 62px;
+    /* ปรับถ้าต้องการให้ชิดมาก/น้อยขึ้น */
+    right: 15px;
+    width: 180px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    padding: 8px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.22s ease;
+}
+
+.nav-menu.active {
+    display: flex;
+    animation: fadeIn 0.18s ease-in-out;
+}
+
+/* รายการเมนู */
+.nav-menu a {
+    text-decoration: none;
+    color: #730606;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-menu a:last-child {
+    border-bottom: none;
+}
+
+.nav-menu a:hover {
+    background: #f9f9f9;
+}
+
+/* ปุ่มออกจากระบบ */
+.logout {
+    color: #a00000;
+    font-weight: 700;
+}
+
+/* เอฟเฟกต์แสดงเมนู */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ====== Payment Section ====== */
+main {
+    padding: 20px;
+}
+
+.payment-form {
+    max-width: 420px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.payment-form h2 {
+    color: #730606;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.payment-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 15px 18px;
+    text-align: left;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.course-title {
+    color: #730606;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.payment-info p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.payment-info span {
+    color: #3a3a3a;
+    font-weight: 500;
+}
+
+.view-more {
+    float: right;
+    font-size: 14px;
+    text-decoration: none;
+    color: #730606;
+    font-weight: 600;
+}
+
+.payment-option {
+    width: 100%;
+    background-color: #fff;
+    border: 1.5px solid #ccc;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.payment-option:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-1px);
+}
+
+.payment-option::before {
+    margin-right: 8px;
+}
+
+.back-btn {
+    background-color: #730606;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s ease;
+}
+
+.back-btn:hover {
+    opacity: 0.85;
+}
+
+/* ====== Base Style ====== */
+body {
+    font-family: "Prompt", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #3a3a3a;
+}
+
+/* ====== Header ====== */
+/* header: ใช้ flexbox จัดแนวกลาง */
+header {
+    background-color: #730606;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* ทำให้โลโก้และปุ่มอยู่ตรงกึ่งกลางแนวตั้ง */
+    padding: 12px 18px;
+    position: relative;
+    z-index: 100;
+}
+
+/* logo อยู่ตรงกลางแนวตั้ง */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    /* ลบ padding-top ที่ทำให้เบี้ยว */
+}
+
+header .logo img {
+    height: 38px;
+    display: block;
+}
+
+/* ====== Footer ====== */
+footer {
+    font-family: "Prompt", sans-serif;
+}
+
+/* ส่วนบนพื้นแดงเข้ม */
+.footer-top {
+    background-color: #730606;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 30px;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+    width: 45%;
+    min-width: 200px;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    line-height: 1.4em;
+}
+
+.footer-right .social-icons {
+    margin: 8px 0;
+}
+
+.footer-right .social-icons img {
+    height: 22px;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.footer-right .social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* ส่วนล่างโลโก้ทองพื้นขาว */
+.footer-bottom {
+    background-color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer-bottom img {
+    height: 40px;
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 428px) {
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-left,
+    .footer-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .footer-right .social-icons img {
+        height: 25px;
+    }
+
+    .footer-bottom img {
+        height: 35px;
+    }
+}
+
+/* ปุ่มเมนู (Hamburger) */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 12px;
+    /* เว้นระยะจากเนื้อหา */
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
+}
+
+/* กล่องเมนู popup ที่เล็กอยู่มุมขวา (top คำนวณเท่ากับ header height + offset) */
+.nav-menu {
+    position: fixed;
+    /* วางให้อยู่ใต้ header โดยประมาณ (header padding 12px + logo height 38px = 50px) */
+    top: 62px;
+    /* ปรับถ้าต้องการให้ชิดมาก/น้อยขึ้น */
+    right: 15px;
+    width: 180px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    padding: 8px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.22s ease;
+}
+
+.nav-menu.active {
+    display: flex;
+    animation: fadeIn 0.18s ease-in-out;
+}
+
+/* รายการเมนู */
+.nav-menu a {
+    text-decoration: none;
+    color: #730606;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-menu a:last-child {
+    border-bottom: none;
+}
+
+.nav-menu a:hover {
+    background: #f9f9f9;
+}
+
+/* ปุ่มออกจากระบบ */
+.logout {
+    color: #a00000;
+    font-weight: 700;
+}
+
+/* เอฟเฟกต์แสดงเมนู */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ====== Payment Section ====== */
+.payment-form {
+    max-width: 450px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.payment-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 18px 20px 25px 20px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.course-title {
+    color: #730606;
+    font-size: 22px;
+    font-weight: 800;
+    /* ลบเส้นใต้ */
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+
+/* จัดข้อมูล 2 คอลัมน์ */
+.payment-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 6px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+.payment-info p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.payment-info span {
+    color: #730606;
+    font-weight: 600;
+}
+
+/* ปุ่มดูเพิ่มเติม */
+.view-more {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #730606;
+    text-decoration: none;
+    margin-top: 0px;
+}
+
+.view-more:hover {
+    text-decoration: underline;
+}
+/* ===== Popup ===== */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-overlay.active {
+    display: flex;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-align: center;
+    width: 85%;
+    max-width: 350px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.qr-image {
+    width: 200px;
+    margin: 10px auto;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.cancel-btn, .confirm-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #aaa;
+    color: #fff;
+}
+
+.confirm-btn {
+    background: #730606;
+    color: #fff;
+}
+/* ===== ฟอร์มบัตรเครดิต ===== */
+.form-group {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #730606;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.2px solid #ccc;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* ✅ แก้ช่องวันหมดอายุและ CVV ให้ไม่ชนกัน */
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px; /* เพิ่มระยะห่างระหว่างช่อง */
+    width: 100%;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+}
+
+.form-group-row .form-group:first-child {
+    flex: 2; /* วันหมดอายุให้กว้างกว่า CVV */
+}
+
+.form-group-row .form-group:last-child {
+    flex: 1; /* ช่อง CVV แคบลงหน่อย */
+}
+.toggle-details {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: #730606;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+  
+}
+.extra-details {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5em;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

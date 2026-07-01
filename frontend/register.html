@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สมัครสมาชิก | KITSUNE OMAKASE</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <div class="header-left"><img src="/frontend/picture/header.png" alt="logo"></div>
+    <div class="header-right">
+      <a href="register.html" class="btn-header btn-register">สมัครสมาชิก</a>
+      <a href="login.html" class="btn-header btn-login">เข้าสู่ระบบ</a>
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    </div>
+  </header>
+
+  <!-- เมนูที่ซ่อนอยู่ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-box">
+      <span class="close-menu" onclick="toggleMenu()">✕</span>
+      <ul>
+        <li><a href="login.html">ข้อมูลสมาชิก</a></li>
+        <li><a href="login.html">จองคอร์สอาหาร</a></li>
+        <li><a href="login.html">ประวัติการจอง</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="logo"><img src="/frontend/picture/logo.png" alt="Kitsune"></div>
+
+  <!-- กล่องสมัครสมาชิก -->
+  <form id="registerForm" class="register-box" onsubmit="event.preventDefault(); register();">
+
+    <h2>สมัครสมาชิก</h2>
+    <input id="name" name="name" placeholder="ชื่อ - นามสกุล" required>
+    <input id="phone" name="phone" placeholder="เบอร์โทรศัพท์" required>
+    <input id="email" type="email" name="email" placeholder="อีเมล" required>
+    <input id="password" type="password" name="password" placeholder="รหัสผ่าน" required>
+    <input id="confirm" type="password" name="confirm" placeholder="ยืนยันรหัสผ่าน" required>
+  </form>
+
+  <!-- ปุ่มอยู่นอกกล่อง -->
+  <div class="register-buttons">
+    <a href="main.html" class="back-btn">ย้อนกลับ</a>
+    <button type="submit" form="registerForm">ยืนยัน</button>
+  </div>
+      <div class="footer-top">
+            <div class="footer-left">
+                <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+                <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+                <p>เวลาเปิดทำการ</p>
+                <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+            </div>
+
+            <div class="footer-right">
+                <p>เบอร์โทรศัพท์</p>
+                <p>(+66) 94-970-9780</p>
+                <div class="social-icons">
+                    <img src="./img/line.png" alt="Line">
+                    <img src="./img/Facebook.png" alt="Facebook">
+                    <img src="./img/instagram.png" alt="Instagram">
+                </div>
+                <p>เวลาเปิดทำการ</p>
+                <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <img src="./picture/namelogo.png" alt="Kitsune Omakase Logo">
+        </div>
+    </footer>
+
+  <script>
+    // สมัครสมาชิก → POST /api/register แล้วไป login.html
+  async function register() {
+  const name  = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const pass  = document.getElementById("password").value;
+  const conf  = document.getElementById("confirm").value;
+
+  // 🔹 ตรวจสอบชื่อ - ต้องมีชื่อและนามสกุล (อย่างน้อย 2 คำ)
+  if (!name.includes(" ") || name.split(" ").length < 2) {
+    alert("กรุณากรอกชื่อและนามสกุลให้ครบถ้วน");
+    return;
+  }
+
+  // 🔹 ตรวจสอบเบอร์โทรศัพท์ - ต้องมี 10 หลักและขึ้นต้นด้วย 0
+  const phonePattern = /^0\d{9}$/;
+  if (!phonePattern.test(phone)) {
+    alert("กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง (10 หลัก และขึ้นต้นด้วย 0)");
+    return;
+  }
+
+  // 🔹 ตรวจสอบอีเมล - รูปแบบต้องถูกต้อง
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    alert("กรุณากรอกอีเมลให้ถูกต้อง");
+    return;
+  }
+
+  // 🔹 ตรวจสอบรหัสผ่าน - ต้องมีอย่างน้อย 8 ตัว
+  if (pass.length < 8) {
+    alert("รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร");
+    return;
+  }
+
+  // 🔹 ตรวจสอบรหัสผ่านซ้ำ
+  if (pass !== conf) {
+    alert("ยืนยันรหัสผ่านไม่ตรงกัน");
+    return;
+  }
+
+  // ✅ ถ้าผ่านทุกอย่าง ค่อยส่งข้อมูลไป backend
+  try {
+    const res = await fetch("http://127.0.0.1:8080/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, phone, email, password: pass })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "สมัครไม่สำเร็จ");
+      return;
+    }
+
+    alert("สมัครสมาชิกสำเร็จ!");
+    window.location = "login.html";
+
+  } catch (err) {
+    console.error("Error:", err);
+    alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง");
+  }
+}
+
+
+  // toggle เมนู
+    function toggleMenu() {
+      const menu = document.getElementById('menuOverlay');
+      menu.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
+

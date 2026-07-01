@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitsune Omakase</title>
+    <link rel="stylesheet" href="booking.css">
+</head>
+
+<body data-course-id="899">
+    <header>
+        <div class="logo">
+            <img src="../picture/header.png" alt="Kitsune Omakase">
+        </div>
+        <nav>
+            <button class="menu-toggle">☰</button>
+            <div class="nav-menu">
+                <a href="./profile.html">ข้อมูลสมาชิก</a>
+                <a href="./reserve.html">จองคอร์สอาหาร</a>
+                <a href="../History/history.html">ประวัติการจอง</a>
+                <a href="../login.html" class="logout">ออกจากระบบ</a>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="booking-form">
+            <h1>Omakase 899+ (11 Courses)</h1>
+            <p>“วัตถุดิบพรีเมียมขึ้น มี Uni และ Chu-Toro”</p>
+
+            <form>
+                <div class="form-group">
+                    <label>ชื่อ - นามสกุล</label>
+                    <input type="text" name="name" value="">
+                </div>
+
+                <div class="form-group">
+                    <label>เบอร์โทรศัพท์</label>
+                    <input type="text" name="phone" value="">
+                </div>
+
+                <div class="form-group">
+                    <label>อีเมล</label>
+                    <input type="email" name="email" value="">
+                </div>
+
+                <div class="form-group">
+                    <!-- <label for="booking-date">วันที่ต้องการจอง</label>
+                    <input type="date" id="booking-date" name="booking-date" class="form-control" required> -->
+                    <label for="booking-date">วันที่ต้องการจอง:</label>
+                    <input type="date" id="booking-date" name="booking-date">
+                    <div id="seatsInfo" style="margin-top: 4px; color: red;"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>จำนวนคน</label>
+                    <input type="number" name="people" min="1" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label>เวลา</label>
+                    <select name="reservation_hour" required>
+                        <option value="15:30 - 17:30">15:30 - 17:30 น.</option>
+                    </select>
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <div class="label-group">
+                        <label style="font-size: 16px; font-weight: lighter;">รายการอาหารที่แพ้</label>
+                    </div>
+                    <div class="checkbox-group allergy-checkbox">
+                        <!-- Checkbox จะถูกเติมจาก JS -->
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="label-group">
+                        <label style="font-size:16px;font-weight:lighter;">เลือกรายการอาหารอื่นจากเมนู</label>
+                    </div>
+                    <label
+                        style="font-size:14px;font-weight:lighter;color:#730606;">เลือกเพื่อแทนรายการอาหารที่แพ้</label>
+                    <div class="checkbox-group menu-checkbox">
+                        <!-- Checkbox จะถูกเติมจาก JS -->
+                    </div>
+                </div>
+                  <div class="policy-container">
+                    <label>
+                        <input type="checkbox" name="acceptPolicy"class="big-checkbox" > ยอมรับนโยบายของทางร้าน
+                    </label>
+                    <button type="button" id="togglePolicy"
+                        style="margin:8px 0; font-size:0.95rem; cursor:pointer; background:none; border:none; color:#730606; text-decoration:underline;">
+                        อ่านรายละเอียดเพิ่มเติม
+                    </button>
+
+                    <div id="policyDetails" style="display:none; margin-left:32px; font-size:0.95rem; line-height:1.5;">
+
+                        <li>ไม่สามารถเลื่อนการจองได้ภายใน 3 วันก่อนวันนัดหมาย</li>
+                        <li>การเลื่อนวันจองสามารถทำได้ไม่เกิน 30 วันจากวันที่จองเดิม</li>
+                        <li>จำกัดการเลื่อนสูงสุด 1 ครั้งต่อการจอง 1 ครั้ง</li>
+
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel">ยกเลิก</button>
+                    <button type="submit" class="submit" src="../Payment/payment.html">ชำระเงิน</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-left">
+                <p>สุขุมวิท 39 อาคารพีเอ็ม ทาวเวอร์ ชั้น 2</p>
+                <p>(เป็นบริการจองส่วนตัวและบริการจองแบบมาตรฐาน)</p>
+                <p>เวลาเปิดทำการ</p>
+                <p>โอมากาเสะ: 10.00 น. - 19.00 น.</p>
+            </div>
+
+            <div class="footer-right">
+                <p>เบอร์โทรศัพท์</p>
+                <p>(+66) 94-970-9780</p>
+                <div class="social-icons">
+                    <img src="../img/Line.png" alt="Line">
+                    <img src="../img/Facebook.png" alt="Facebook">
+                    <img src="../img/instagram.png" alt="Instagram">
+                </div>
+                <p>เวลาเปิดทำการ</p>
+                <p>ปิดทุกวันหยุดนักขัตฤกษ์</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <img src="../picture/namelogo.png" alt="Kitsune Omakase Logo">
+        </div>
+    </footer>
+
+</body>
+<script src="booking.js"></script>
+
+</html>

@@ -1,0 +1,374 @@
+/* ====== Base Style ====== */
+body {
+    font-family: "Prompt", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #3a3a3a;
+}
+
+/* ====== Header ====== */
+/* header: ใช้ flexbox จัดแนวกลาง */
+header {
+    background-color: #730606;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* ทำให้โลโก้และปุ่มอยู่ตรงกึ่งกลางแนวตั้ง */
+    padding: 12px 18px;
+    position: relative;
+    z-index: 100;
+}
+
+/* logo อยู่ตรงกลางแนวตั้ง */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    /* ลบ padding-top ที่ทำให้เบี้ยว */
+}
+
+header .logo img {
+    height: 38px;
+    display: block;
+}
+
+/* ====== Footer ====== */
+footer {
+    font-family: "Prompt", sans-serif;
+}
+
+/* ส่วนบนพื้นแดงเข้ม */
+.footer-top {
+    background-color: #730606;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 30px;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+    width: 45%;
+    min-width: 200px;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    line-height: 1.4em;
+}
+
+.footer-right .social-icons {
+    margin: 8px 0;
+}
+
+.footer-right .social-icons img {
+    height: 22px;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.footer-right .social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* ส่วนล่างโลโก้ทองพื้นขาว */
+.footer-bottom {
+    background-color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer-bottom img {
+    height: 40px;
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 428px) {
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-left,
+    .footer-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .footer-right .social-icons img {
+        height: 25px;
+    }
+
+    .footer-bottom img {
+        height: 35px;
+    }
+}
+
+/* ปุ่มเมนู (Hamburger) */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 12px;
+    /* เว้นระยะจากเนื้อหา */
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
+}
+
+/* กล่องเมนู popup ที่เล็กอยู่มุมขวา (top คำนวณเท่ากับ header height + offset) */
+.nav-menu {
+    position: fixed;
+    /* วางให้อยู่ใต้ header โดยประมาณ (header padding 12px + logo height 38px = 50px) */
+    top: 62px;
+    /* ปรับถ้าต้องการให้ชิดมาก/น้อยขึ้น */
+    right: 15px;
+    width: 180px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    padding: 8px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.22s ease;
+}
+
+.nav-menu.active {
+    display: flex;
+    animation: fadeIn 0.18s ease-in-out;
+}
+
+/* รายการเมนู */
+.nav-menu a {
+    text-decoration: none;
+    color: #730606;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-menu a:last-child {
+    border-bottom: none;
+}
+
+.nav-menu a:hover {
+    background: #f9f9f9;
+}
+
+/* ปุ่มออกจากระบบ */
+.logout {
+    color: #a00000;
+    font-weight: 700;
+}
+
+/* เอฟเฟกต์แสดงเมนู */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ====== ประวัติการจอง ====== */
+.reservation-history {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.reservation-history h2 {
+    text-align: center;
+    color: #730606;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+}
+
+/* กล่องการจอง */
+.booking-card {
+    background: #fff;
+    border: 2px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.course-title {
+    color: #730606;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.booking-info p {
+    margin: 6px 0;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.booking-info span {
+    color: #000;
+    font-weight: 600;
+}
+
+/* ปุ่มดูเพิ่มเติม */
+.view-more {
+    display: inline-block;
+    margin-top: 10px;
+    background: #730606;
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    transition: background 0.2s ease;
+}
+
+.view-more:hover {
+    background: #a01010;
+}
+
+/* Responsive */
+@media screen and (max-width: 428px) {
+    .reservation-history {
+        margin: 25px 10px;
+        padding: 0 8px;
+    }
+
+    .booking-card {
+        padding: 15px;
+    }
+
+    .course-title {
+        font-size: 1.1em;
+    }
+
+    .booking-info p {
+        font-size: 0.9em;
+    }
+}
+
+/* ====== Reservation History Section ====== */
+.reservation-history {
+  padding: 30px 20px 60px;
+  text-align: center;
+}
+
+.reservation-history h2 {
+  color: #730606;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+/* กล่องประวัติแต่ละรายการ */
+.reservation-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 18px 20px 25px;
+  text-align: left;
+  margin: 0 auto 20px auto;
+  max-width: 400px;
+}
+
+/* หัวข้อหลักชื่อคอร์ส */
+.reservation-card .course-title {
+  font-size: 1.35em;
+  font-weight: 800;
+  color: #730606;
+  margin-bottom: 8px;
+}
+
+/* รายละเอียดวันที่ / เวลา / จำนวน / ราคา */
+.reservation-card .detail-line {
+  font-size: 0.95em;
+  color: #3a3a3a;
+  margin: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.reservation-card .detail-line span {
+  color: #730606;
+  font-weight: 600;
+}
+
+/* ปุ่มดูเพิ่มเติม */
+.reservation-card .view-more {
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95em;
+  margin-top: 8px;
+}
+
+.reservation-card .view-more:hover {
+  text-decoration: underline;
+}
+
+/* ===== Pagination ===== */
+.pagination {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.pagination button {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  margin: 0 3px;
+  cursor: pointer;
+  background-color: #ccc;
+  color: #fff;
+}
+
+.pagination button.active {
+  background-color: #730606;
+}
+
+.pagination button:hover {
+  opacity: 0.85;
+}
+.pagination-btn {
+    background-color: #730606; /* สีแดง */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+.pagination-btn:disabled {
+    background-color: #ccc;
+    cursor: default;
+}

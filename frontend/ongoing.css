@@ -1,0 +1,267 @@
+
+/* ───────────── ongoing.css ───────────── */
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #3a3a3a;
+  margin-bottom: 60px; /* เผื่อ footer */
+}
+
+/* ===== Header (แก้เฉพาะส่วน notification + menu) ===== */
+
+
+/* 🔔 กระดิ่งแจ้งเตือน */
+.notification {
+  position: relative;
+  font-size: 26px; /* ✅ ปรับขนาดให้สมดุล */
+  cursor: pointer;
+  line-height: 1;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: red;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ☰ เมนูสามขีด */
+.menu-icon {
+  font-size: 26px; /* ✅ เพิ่มขนาดให้เท่ากระดิ่ง */
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+
+.menu-icon:hover {
+  transform: scale(1.15); /* เอฟเฟกต์ขยายตอน hover */
+}
+
+
+/* พื้นบนสีแดง */
+.menu-top {
+  width: 100%;
+  background: #730606;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+
+
+.close-menu {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.close-menu:hover {
+  transform: rotate(90deg);
+}
+
+
+/* ===== Notification Section ===== */
+.notification-section {
+  padding: 20px;
+  border-bottom: 2px solid #eee;
+}
+.notification-card {
+  border: 1px solid #d0bfbf;
+  background: #fef9f9;
+  padding: 10px 14px;           /* 🔹 ลด padding */
+  margin-bottom: 10px;          /* 🔹 ลดระยะห่างระหว่างกล่อง */
+  border-radius: 10px;
+  transition: 0.2s;
+  width: 100%;
+  max-width: 720px;             /* 🔹 จำกัดความกว้าง */
+  margin-left: auto;
+  margin-right: auto;           /* 🔹 จัดให้อยู่ตรงกลาง */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+.notification-card.new {
+  border-color: #730606;
+  background: #fff0f0;
+}
+.notification-card h3 {
+  margin: 0 0 4px 0;            /* 🔹 ลดช่องว่างหัวข้อ */
+  font-size: 15px;              /* 🔹 ลดขนาด font */
+}
+.notification-card p {
+  margin: 2px 0;                /* 🔹 ลดช่องว่างบรรทัด */
+  font-size: 13.5px;            /* 🔹 ลดขนาด font */
+}
+.extra-info {
+  display: none;
+  margin-top: 6px;
+  font-size: 14px;
+}
+.view-details,
+.confirm-btn {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.confirm-btn {
+  background: #730606;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-left: 6px;
+}
+
+/* ===== Calendar Section ===== */
+.month-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
+.month-container span {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 12px;
+}
+.arrow-left,
+.arrow-right {
+  cursor: pointer;
+  width: 24px;
+}
+
+#day-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px; /* ✅ จากเดิม 14px เพิ่มเป็น 40px */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+#ongoing-container::before {
+  content: "";
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: 1px;
+  background: #e6e6e6;
+  margin: 0 auto 40px auto; /* ✅ เส้นสีเทาอ่อนและช่องว่างล่าง */
+  border-radius: 10px;
+}
+
+
+.day-card {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+  background: #f2f2f2;
+  min-width: 52px;
+}
+.day-card span:first-child {
+  font-weight: bold;
+  display: block;
+}
+.day-card.active-day {
+  background: #730606;
+  color: white;
+}
+
+/* ===== Ongoing Reservations ===== */
+#ongoing-container {
+  padding: 0 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ทำให้การ์ดอยู่กลางจอ */
+}
+
+.ongoing-card {
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-left: 4px solid #730606;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 720px; /* ✅ จำกัดความกว้างสูงสุดของกล่อง */
+}
+
+.ongoing-card strong {
+  font-size: 15px;
+  color: #730606;
+}
+
+.ongoing-card div {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.open-card {
+  position: relative;
+}
+
+.view-more {
+  display: inline-block;
+  margin-top: 8px;
+  color: #730606;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.extra-details {
+  margin-top: 8px;
+  font-size: 14px;
+  display: none;
+  color: #444;
+}
+
+.checkin-btn {
+  display: block;
+  background-color: #730606;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: 0.2s;
+}
+.checkin-btn:hover {
+  background-color: #a31515;
+}
+
+/* สถานะสี */
+.status-done {
+  color: #028a0f;
+  font-weight: bold;
+}
+.status-pending {
+  color: #c91b1b;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 16px;
+  }
+  .day-card {
+    padding: 6px 10px;
+    min-width: 45px;
+  }
+  .ongoing-card {
+    font-size: 13px;
+  }
+}

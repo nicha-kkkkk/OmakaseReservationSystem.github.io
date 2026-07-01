@@ -1,0 +1,346 @@
+
+/* ====== Base Style ====== */
+body {
+    font-family: "Prompt", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #3a3a3a;
+}
+
+/* ====== Header ====== */
+/* header: ใช้ flexbox จัดแนวกลาง */
+header {
+    background-color: #730606;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* ทำให้โลโก้และปุ่มอยู่ตรงกึ่งกลางแนวตั้ง */
+    padding: 12px 18px;
+    position: relative;
+    z-index: 100;
+}
+
+/* logo อยู่ตรงกลางแนวตั้ง */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    /* ลบ padding-top ที่ทำให้เบี้ยว */
+}
+
+header .logo img {
+    height: 38px;
+    display: block;
+}
+
+/* ====== Main Section ====== */
+main {
+    padding: 25px;
+}
+
+.booking-form {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.booking-form h1 {
+    color: #730606;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.booking-form p {
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* ====== Form Fields ====== */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+/* ====== Checkbox group ====== */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Custom checkbox */
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #730606;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: #730606;
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-group input[type="text"] {
+    margin-top: 30px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* ====== Divider ====== */
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 25px 0;
+}
+
+/* ====== Buttons ====== */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.form-actions button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.submit {
+    background-color: #730606;
+    color: #fff;
+}
+
+/* ====== Footer ====== */
+footer {
+    font-family: "Prompt", sans-serif;
+}
+
+/* ส่วนบนพื้นแดงเข้ม */
+.footer-top {
+    background-color: #730606;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 30px;
+    flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+    width: 45%;
+    min-width: 200px;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 4px 0;
+    font-size: 0.95em;
+    line-height: 1.4em;
+}
+
+.footer-right .social-icons {
+    margin: 8px 0;
+}
+
+.footer-right .social-icons img {
+    height: 22px;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.footer-right .social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* ส่วนล่างโลโก้ทองพื้นขาว */
+.footer-bottom {
+    background-color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer-bottom img {
+    height: 40px;
+}
+
+/* Responsive สำหรับมือถือ */
+@media screen and (max-width: 428px) {
+    .footer-top {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-left,
+    .footer-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .footer-right .social-icons img {
+        height: 25px;
+    }
+
+    .footer-bottom img {
+        height: 35px;
+    }
+}
+
+/* ปุ่มเมนู (Hamburger) */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 12px;
+    /* เว้นระยะจากเนื้อหา */
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
+}
+
+/* กล่องเมนู popup ที่เล็กอยู่มุมขวา (top คำนวณเท่ากับ header height + offset) */
+.nav-menu {
+    position: fixed;
+    /* วางให้อยู่ใต้ header โดยประมาณ (header padding 12px + logo height 38px = 50px) */
+    top: 62px;
+    /* ปรับถ้าต้องการให้ชิดมาก/น้อยขึ้น */
+    right: 15px;
+    width: 180px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    padding: 8px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.22s ease;
+}
+
+.nav-menu.active {
+    display: flex;
+    animation: fadeIn 0.18s ease-in-out;
+}
+
+/* รายการเมนู */
+.nav-menu a {
+    text-decoration: none;
+    color: #730606;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.nav-menu a:last-child {
+    border-bottom: none;
+}
+
+.nav-menu a:hover {
+    background: #f9f9f9;
+}
+
+/* ปุ่มออกจากระบบ */
+.logout {
+    color: #a00000;
+    font-weight: 700;
+}
+
+/* เอฟเฟกต์แสดงเมนู */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* booking.css */
+.form-group p.reservation-time {
+    font-size: 16px;          
+    padding: 8px 12px;       
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    display: inline-block; 
+    min-width: 120px;   
+}
+.label-group{
+   display: flex;
+}
+
+/* เพิ่มขนาด checkbox */
+.big-checkbox {
+  width: 20px;   /* ความกว้าง */
+  height: 20px;  /* ความสูง */
+  cursor: pointer;
+
+}
+
+
