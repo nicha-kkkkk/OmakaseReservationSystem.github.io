@@ -12,7 +12,7 @@
    <!-- ───────── HEADER ───────── -->
   <header>
     <div class="header-left">
-      <img src="picture/header.png" alt="header logo">
+      <img src="/frontend/picture/header.png" alt="header logo">
     </div>
     
     <div class="header-right">
@@ -38,11 +38,11 @@
 
   <!-- ───────── LOGO ───────── -->
   <div class="logo">
-    <img src="picture/logo.png" alt="Kitsune Logo">
+    <img src="/frontend/picture/logo.png" alt="Kitsune Logo">
   </div>
 
   <div class="foodintro">
-    <img src="picture/foodintro.png" alt="foodintro">
+    <img src="/frontend/picture/foodintro.png" alt="foodintro">
   </div>
 
   <p class="intro">
@@ -55,7 +55,7 @@
   <!-- <div class="course">
     <h2>Omakase 499+ (7 Courses)</h2>
     <p class="intro">“เหมาะสำหรับคนเริ่มลองโอมากาเสะ”</p>
-    <img src="picture/499+.png" alt="Omakase 499">
+    <img src="/frontend/picture/499+.png" alt="Omakase 499">
     <p><strong>เวลา:</strong> 11:00 - 12:00 น.</p>
     <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
     <ul>
@@ -73,7 +73,7 @@
   <!-- <div class="course">
     <h2>Omakase 699+ (9 Courses)</h2>
       <p class="intro">“เพิ่มวัตถุดิบและความหลากหลาย”</p>
-    <img src="picture/699+.png" alt="Omakase 699">
+    <img src="/frontend/picture/699+.png" alt="Omakase 699">
     <p><strong>เวลา:</strong> 13:30 - 14:30 น.</p>
     <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
     
@@ -94,7 +94,7 @@
   <!-- <div class="course">
     <h2>Omakase 899+ (11 Courses)</h2>
       <p class="intro">“วัตถุดิบพรีเมียมขึ้น มี Uni และ Chu-Toro”</p>
-    <img src="picture/899+.png" alt="Omakase 899">
+    <img src="/frontend/picture/899+.png" alt="Omakase 899">
     <p><strong>เวลา:</strong> 15:30 - 17:30 น.</p>
     <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
     <ul>
@@ -116,7 +116,7 @@
   <!-- <div class="course">
     <h2>Omakase 1099+ (13 Courses)</h2>
       <p class="intro">“ระดับพรีเมียม มีทั้ง Uni, Chu-Toro, Wagyu”</p>
-    <img src="picture/1099+.png" alt="Omakase 1099">
+    <img src="/frontend/picture/1099+.png" alt="Omakase 1099">
     <p><strong>เวลา:</strong> 18:30 - 21:00 น.</p>
     <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
     <ul>
@@ -282,10 +282,10 @@
 
   function renderCourse(price, foods) {
   const courseImages = {
-    499: "picture/499+.png",
-    699: "picture/699+.png",
-    899: "picture/899+.png",
-    1099: "picture/1099+.png"
+    499: "/frontend/picture/499+.png",
+    699: "/frontend/picture/699+.png",
+    899: "/frontend/picture/899+.png",
+    1099: "/frontend/picture/1099+.png"
   };
 
   const courseDesc = {
@@ -306,7 +306,7 @@
     <div class="course">
       <h2>Omakase ${price}+ (${foods.length} Courses)</h2>
       <p class="intro">“${courseDesc[price] || ''}”</p>
-      <img src="${courseImages[price] || 'picture/logo.png'}" alt="Omakase ${price}">
+      <img src="${courseImages[price] || '/frontend/picture/logo.png'}" alt="Omakase ${price}">
       <p><strong>เวลา:</strong> ${courseTime[price] || '-'}</p>
       <p class="intro">เวลาสำหรับคอร์สนี้เท่านั้น</p>
 
@@ -375,3 +375,6 @@
 </script>
 </body>
 </html>
+
+
+
