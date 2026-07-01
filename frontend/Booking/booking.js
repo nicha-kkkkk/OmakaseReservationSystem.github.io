@@ -50,7 +50,7 @@ dateInput?.addEventListener('change', async () => {
   }
 
   try {
-    const res = await fetch(`http://127.0.0.1:8080/api/reservations/availability?date=${date}&course_name=${encodeURIComponent(course_name)}&reservation_hour=${encodeURIComponent(reservation_hour)}`);
+    const res = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/availability?date=${date}&course_name=${encodeURIComponent(course_name)}&reservation_hour=${encodeURIComponent(reservation_hour)}`);
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
     remainingSeats = data.remaining;
@@ -80,7 +80,7 @@ async function loadUser() {
     return;
   }
   try {
-    const res = await fetch(`http://127.0.0.1:8080/api/profile?id=${userId}`, {
+    const res = await fetch(`https://omakase-backend-li58.onrender.com/api/profile?id=${userId}`, {
       headers: token ? { "Authorization": `Bearer ${token}` } : {}
     });
     if (!res.ok) throw new Error("ไม่สามารถโหลดข้อมูลผู้ใช้");
@@ -174,7 +174,7 @@ async function loadCourseAndMenus() {
   }
 
   try {
-    const res = await fetch(`http://127.0.0.1:8080/api/admin/food/${courseId}`);
+    const res = await fetch(`https://omakase-backend-li58.onrender.com/api/admin/food/${courseId}`);
     if (!res.ok) throw new Error("โหลดข้อมูลคอร์สล้มเหลว");
     const data = await res.json();
     if (!data.dataFood) return;

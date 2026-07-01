@@ -94,7 +94,7 @@ let confirmedReservations = JSON.parse(localStorage.getItem("confirmedReservatio
 
 async function fetchNotifications() {
   try {
-    const res = await axios.get("http://127.0.0.1:8080/api/admin/reservations/notifications");
+    const res = await axios.get("https://omakase-backend-li58.onrender.com/api/admin/reservations/notifications");
     if (res.data.status === "success") {
       const fetched = res.data.notifications.map(n => ({ ...n, isNew: !n.isRead }));
       const unique = [];
@@ -144,11 +144,11 @@ function renderNotifications() {
     if (n.type === "new_reservation") {
       typeLabel = "จองใหม่";
       confirmText = "ยืนยันการจอง";
-      confirmEndpoint = `http://127.0.0.1:8080/api/admin/reservations/${n.reservation_id}/confirm`;
+      confirmEndpoint = `https://omakase-backend-li58.onrender.com/api/admin/reservations/${n.reservation_id}/confirm`;
     } else if (n.type === "reschedule") {
       typeLabel = "เลื่อนวันจอง";
       confirmText = "ยืนยันการเลื่อน";
-      confirmEndpoint = `http://127.0.0.1:8080/api/admin/reservations/${n.reservation_id}/reschedule/confirm`;
+      confirmEndpoint = `https://omakase-backend-li58.onrender.com/api/admin/reservations/${n.reservation_id}/reschedule/confirm`;
     } else {
       typeLabel = "แจ้งเตือนทั่วไป";
     }

@@ -36,7 +36,7 @@ async function fetchReservations() {
     const listContainer = document.getElementById("reservation-list");
 
     try {
-        const res = await fetch("http://127.0.0.1:8080/api/admin/reservations/all");
+        const res = await fetch("https://omakase-backend-li58.onrender.com/api/admin/reservations/all");
         const data = await res.json();
 
         if (!data.reservations || data.reservations.length === 0) {

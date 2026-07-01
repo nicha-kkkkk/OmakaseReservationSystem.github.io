@@ -90,7 +90,7 @@ async function loadProfile() {
   }
 
   try {
-    const res = await fetch(`http://127.0.0.1:8080/api/profile?id=${id}`);
+    const res = await fetch(`https://omakase-backend-li58.onrender.com/api/profile?id=${id}`);
     const user = await res.json();
 
     if (!res.ok) {
@@ -172,7 +172,7 @@ form.addEventListener("submit", async (e) => {
   if (password) payload.password = password;
 
   try {
-    const res = await fetch(`http://127.0.0.1:8080/api/profile/${id}`, {
+    const res = await fetch(`https://omakase-backend-li58.onrender.com/api/profile/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

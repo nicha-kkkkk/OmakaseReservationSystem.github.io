@@ -21,7 +21,7 @@ const app = express();
 
 // ─────── Middleware ───────
 app.use(cors({
-  origin: ["http://127.0.0.1:5500","http://127.0.0.1:5501","http://localhost:5500"],
+  origin: ["http://127.0.0.1:5500","http://127.0.0.1:5501","http://localhost:5500","https://nicha-kkkkk.github.io"],
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   allowedHeaders: ["Content-Type","Authorization"]
 }));
@@ -71,7 +71,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 console.log("📘 Swagger UI: http://127.0.0.1:8080/api-docs");
 
 // ─────── Database ───────
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/kitsune";
+const MONGODB_URI = process.env.MONGO_URI || "mongodb://localhost:27017/kitsune";
 mongoose.connect(MONGODB_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB error:", err));

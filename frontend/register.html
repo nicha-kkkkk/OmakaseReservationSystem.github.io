@@ -115,7 +115,7 @@
 
   // ✅ ถ้าผ่านทุกอย่าง ค่อยส่งข้อมูลไป backend
   try {
-    const res = await fetch("http://127.0.0.1:8080/api/register", {
+    const res = await fetch("https://omakase-backend-li58.onrender.com/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, phone, email, password: pass })

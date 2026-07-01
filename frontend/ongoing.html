@@ -78,7 +78,7 @@ let confirmedReservations = JSON.parse(localStorage.getItem("confirmedReservatio
 
 async function fetchNotifications() {
   try {
-    const res = await axios.get("http://127.0.0.1:8080/api/admin/reservations/notifications");
+    const res = await axios.get("https://omakase-backend-li58.onrender.com/api/admin/reservations/notifications");
     if (res.data.status === "success") {
       const fetched = res.data.notifications.map(n => ({ ...n, isNew: !n.isRead }));
       const unique = [];
@@ -119,12 +119,12 @@ function renderNotifications() {
       case "new_reservation":
         typeLabel="จองใหม่";
         confirmText="ยืนยันการจอง";
-        confirmEndpoint=`http://127.0.0.1:8080/api/admin/reservations/${n.reservation_id}/confirm`;
+        confirmEndpoint=`https://omakase-backend-li58.onrender.com/api/admin/reservations/${n.reservation_id}/confirm`;
         break;
       case "reschedule":
         typeLabel="เลื่อนวันจอง";
         confirmText="ยืนยันการเลื่อน";
-        confirmEndpoint=`http://127.0.0.1:8080/api/admin/reservations/${n.reservation_id}/reschedule/confirm`;
+        confirmEndpoint=`https://omakase-backend-li58.onrender.com/api/admin/reservations/${n.reservation_id}/reschedule/confirm`;
         break;
       case "reschedule_confirmed":
         typeLabel="เลื่อนวันจอง (ยืนยันแล้ว)";
@@ -239,7 +239,7 @@ function selectDay(dayparam,monthparam,yearparam){ lastSelectedDay=dayparam; las
 }
 
 function showOngoing(dayparam,monthparam,yearparam){
-  axios.get("http://127.0.0.1:8080/api/admin/reservations/all")
+  axios.get("https://omakase-backend-li58.onrender.com/api/admin/reservations/all")
   .then(res=>{
     if(res.data.status==="success"){
       const reservations=res.data.reservations;
@@ -300,7 +300,7 @@ function showOngoing(dayparam,monthparam,yearparam){
           if(btn.textContent==="เช็คอิน"){
             if(confirm("ยืนยันเช็คอินลูกค้ารายนี้?")){
               try{
-                await axios.put(`http://127.0.0.1:8080/api/admin/reservations/${id}/checkin`,{ checkin_status:"เช็คอินแล้ว" });
+                await axios.put(`https://omakase-backend-li58.onrender.com/api/admin/reservations/${id}/checkin`,{ checkin_status:"เช็คอินแล้ว" });
                 btn.textContent="เช็คอินแล้ว";
               }catch(err){ console.error(err); alert("เกิดข้อผิดพลาดในการเช็คอิน"); }
             }

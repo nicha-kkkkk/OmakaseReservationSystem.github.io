@@ -41,7 +41,7 @@
 //     if (!reservationId) return alert("ไม่พบรหัสการจอง");
 
 //     try {
-//         const res = await fetch(`http://127.0.0.1:8080/api/reservations/${reservationId}`, {
+//         const res = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/${reservationId}`, {
 //             method: "PATCH",
 //             headers: { "Content-Type": "application/json" },
 //             body: JSON.stringify({ status: "ชำระเงินเรียบร้อย" })
@@ -104,7 +104,7 @@
 //     }
 
 //     try {
-//         const res = await fetch(`http://127.0.0.1:8080/api/reservations/${reservationId}`);
+//         const res = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/${reservationId}`);
 //         const data = await res.json();
 
 //         if (!res.ok) {
@@ -216,7 +216,7 @@ document.querySelector("#qrPopup .confirm-btn")?.addEventListener("click", async
     const totalPrice = (pendingBooking.course_price || 0) * (pendingBooking.number_of_people || 1);
 
     try {
-        const res = await fetch("http://127.0.0.1:8080/api/reservations", {
+        const res = await fetch("https://omakase-backend-li58.onrender.com/api/reservations", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
@@ -269,7 +269,7 @@ cardForm?.addEventListener('submit', async (e) => {
     const totalPrice = (pendingBooking.course_price || 0) * (pendingBooking.number_of_people || 1);
 
     try {
-        const res = await fetch("http://127.0.0.1:8080/api/reservations", {
+        const res = await fetch("https://omakase-backend-li58.onrender.com/api/reservations", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",

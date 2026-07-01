@@ -43,7 +43,7 @@
 //     }
 
 //     try {
-//         const res = await fetch(`http://127.0.0.1:8080/api/reservations/my?userId=${customerId}`);
+//         const res = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/my?userId=${customerId}`);
 //         const data = await res.json();
 //         console.log("Reservations from API:", data); // 🔹 debug
 
@@ -234,7 +234,7 @@ async function fetchReservations() {
     }
 
     try {
-        const res = await fetch(`http://127.0.0.1:8080/api/reservations/my?userId=${customerId}`);
+        const res = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/my?userId=${customerId}`);
         const data = await res.json();
 
         if (!Array.isArray(data) || data.length === 0) {
@@ -511,7 +511,7 @@ document.querySelectorAll(".reschedule-btn").forEach(btn => {
 
             try {
                 // เช็คจำนวนที่นั่ง
-                const resAvailability = await fetch(`http://127.0.0.1:8080/api/reservations/availability?date=${newDate}&course_name=${encodeURIComponent(reservation.course_name)}&reservation_hour=${encodeURIComponent(reservation.reservation_hour)}`);
+                const resAvailability = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/availability?date=${newDate}&course_name=${encodeURIComponent(reservation.course_name)}&reservation_hour=${encodeURIComponent(reservation.reservation_hour)}`);
                 const availabilityData = await resAvailability.json();
 
                 if (availabilityData.remaining < reservation.number_of_people) {
@@ -520,7 +520,7 @@ document.querySelectorAll(".reschedule-btn").forEach(btn => {
                 }
 
                 // ถ้ามีที่ว่าง → ส่งคำขอเลื่อนวัน
-                const resUpdate = await fetch(`http://127.0.0.1:8080/api/reservations/${id}/reschedule`, {
+                const resUpdate = await fetch(`https://omakase-backend-li58.onrender.com/api/reservations/${id}/reschedule`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ newDate })
