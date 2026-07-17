@@ -74,18 +74,6 @@ The system provides:
 
 ---
 
-## 📷 Screenshots
-
-| Home | Reservation |
-|------|-------------|
-| ![](images/home.png) | ![](images/reservation.png) |
-
-| Menu | Dashboard |
-|------|-----------|
-| ![](images/menu.png) | ![](images/dashboard.png) |
-
----
-
 ## 🚀 Installation
 
 ```bash
